@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>🏠 Chasseur d'apparts — 69 Ouest</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f7f4ef;--card:#fff;--navy:#1a2340;--blue:#2563eb;--blue2:#1d4ed8;--green:#16a34a;--orange:#ea580c;--red:#dc2626;--text:#1e1e2e;--muted:#6b7280;--border:#e5e0d8;--accent:#f59e0b}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+header{background:var(--navy);padding:32px 24px 28px;text-align:center;position:relative;overflow:hidden}
+header::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 70% 50%,rgba(37,99,235,.35) 0%,transparent 65%),radial-gradient(ellipse at 20% 80%,rgba(245,158,11,.15) 0%,transparent 50%)}
+header h1{font-family:'DM Serif Display',serif;font-size:2em;color:#fff;position:relative;letter-spacing:-.5px}
+header p{color:rgba(255,255,255,.65);font-size:.88em;margin-top:6px;position:relative}
+.criteres{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;padding:16px 20px 0;position:relative}
+.criteres span{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#fff;font-size:.78em;padding:4px 12px;border-radius:20px}
+.stats{display:flex;justify-content:center;gap:16px;margin:24px auto 0;max-width:600px;padding:0 16px;flex-wrap:wrap}
+.stat{background:var(--card);border-radius:14px;padding:16px 28px;text-align:center;box-shadow:0 2px 16px rgba(0,0,0,.07);flex:1;min-width:110px}
+.stat .n{font-family:'DM Serif Display',serif;font-size:2.2em;color:var(--blue);line-height:1}
+.stat .l{font-size:.78em;color:var(--muted);margin-top:4px}
+.add-section{max-width:720px;margin:28px auto 0;padding:0 16px}
+.add-card{background:var(--card);border-radius:16px;box-shadow:0 2px 20px rgba(0,0,0,.08);overflow:hidden}
+.add-header{background:linear-gradient(135deg,var(--blue),var(--blue2));padding:16px 20px;display:flex;align-items:center;gap:10px;cursor:pointer;user-select:none}
+.add-header h2{font-size:1em;color:#fff;font-weight:600}
+.add-header .toggle{margin-left:auto;color:rgba(255,255,255,.8);font-size:1.2em;transition:transform .3s}
+.add-header.open .toggle{transform:rotate(180deg)}
+.add-body{padding:20px;display:none}
+.add-body.open{display:block}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+.form-row.full{grid-template-columns:1fr}
+.form-row.three{grid-template-columns:1fr 1fr 1fr}
+label{font-size:.78em;font-weight:600;color:var(--muted);display:block;margin-bottom:4px;text-transform:uppercase;letter-spacing:.05em}
+input,select,textarea{width:100%;padding:10px 14px;border:1.5px solid var(--border);border-radius:8px;font-family:'DM Sans',sans-serif;font-size:.9em;background:var(--bg);color:var(--text);transition:border-color .2s;outline:none}
+input:focus,select:focus,textarea:focus{border-color:var(--blue)}
+textarea{resize:vertical;min-height:70px}
+.btn-add{width:100%;padding:12px;background:linear-gradient(135deg,var(--blue),var(--blue2));color:#fff;border:none;border-radius:10px;font-family:'DM Sans',sans-serif;font-size:.95em;font-weight:600;cursor:pointer;margin-top:4px;transition:opacity .2s}
+.btn-add:hover{opacity:.92}
+.setup-box{background:#fffbeb;border:1.5px solid #fcd34d;border-radius:12px;padding:16px 20px;margin-bottom:16px;font-size:.88em;color:#78350f}
+.setup-box b{color:#92400e}
+.setup-box input{margin-top:6px;background:#fff}
+.filters{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;padding:24px 16px 12px;max-width:800px;margin:0 auto}
+.filters button{border:none;padding:8px 18px;border-radius:20px;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:.85em;font-weight:500;transition:all .2s}
+.filters button.active{background:var(--navy);color:#fff}
+.filters button:not(.active){background:var(--card);color:var(--muted);box-shadow:0 1px 4px rgba(0,0,0,.08)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px;padding:8px 16px 48px;max-width:1200px;margin:0 auto}
+.card{background:var(--card);border-radius:16px;box-shadow:0 2px 16px rgba(0,0,0,.07);overflow:hidden;display:flex;flex-direction:column;transition:transform .2s,box-shadow .2s;position:relative}
+.card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,0,0,.12)}
+.card-img{width:100%;height:160px;object-fit:cover;display:block}
+.card-img-placeholder{width:100%;height:90px;background:linear-gradient(135deg,#f0f4f8,#e2e8f0);display:flex;align-items:center;justify-content:center;font-size:2em;color:#94a3b8}
+.card-body{padding:16px;flex:1;display:flex;flex-direction:column;gap:8px}
+.card-top{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+.card-title{font-weight:600;font-size:.95em;color:var(--navy);line-height:1.35;flex:1}
+.score-badge{min-width:40px;text-align:center;border-radius:20px;padding:3px 10px;font-weight:700;font-size:.82em;color:#fff;white-space:nowrap}
+.card-meta{display:flex;flex-wrap:wrap;gap:6px;font-size:.82em;color:var(--muted)}
+.dpe-badge{padding:2px 8px;border-radius:4px;font-weight:700;font-size:.82em}
+.card-source{font-size:.75em;color:#94a3b8}
+.card-desc{font-size:.82em;color:#555;line-height:1.5;flex:1}
+.card-footer{display:flex;gap:8px;margin-top:4px}
+.btn-link{flex:1;text-align:center;padding:8px 12px;background:var(--blue);color:#fff;text-decoration:none;border-radius:8px;font-size:.83em;font-weight:600;transition:background .2s}
+.btn-link:hover{background:var(--blue2)}
+.btn-status{padding:8px 12px;border:none;border-radius:8px;font-size:.83em;font-weight:600;cursor:pointer;transition:all .2s;font-family:'DM Sans',sans-serif}
+.status-new{background:#eff6ff;color:var(--blue)}
+.status-fav{background:#fef3c7;color:#92400e}
+.status-visit{background:#f0fdf4;color:var(--green)}
+.status-reject{background:#fef2f2;color:var(--red)}
+.card.rejected{opacity:.4}
+.status-bar{position:absolute;top:0;left:0;right:0;height:4px}
+.bar-new{background:var(--blue)}.bar-fav{background:var(--accent)}.bar-visit{background:var(--green)}.bar-reject{background:var(--red)}
+.empty{grid-column:1/-1;text-align:center;padding:60px 20px;color:var(--muted)}
+.empty .icon{font-size:3em;margin-bottom:12px}
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--navy);color:#fff;padding:12px 24px;border-radius:30px;font-size:.88em;font-weight:500;box-shadow:0 8px 24px rgba(0,0,0,.2);transition:transform .3s ease;z-index:999;white-space:nowrap}
+.toast.show{transform:translateX(-50%) translateY(0)}
+.btn-delete{position:absolute;top:8px;right:8px;background:rgba(0,0,0,.45);color:#fff;border:none;width:26px;height:26px;border-radius:50%;cursor:pointer;font-size:.8em;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .2s}
+.card:hover .btn-delete{opacity:1}
+.loader{grid-column:1/-1;text-align:center;padding:40px;color:var(--muted);font-size:.95em}
+@media(max-width:500px){.form-row{grid-template-columns:1fr}.form-row.three{grid-template-columns:1fr 1fr}header h1{font-size:1.5em}}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>🏠 Chasseur d'appartements</h1>
+  <p>Zone 69 Ouest · Partagé entre vous deux</p>
+  <div class="criteres">
+    <span>💰 800–1 300€</span><span>🚪 3 chambres min</span>
+    <span>⚡ DPE ≤ C</span>
+    <span>📍 Brindas · Tassin · Francheville · Charbonnières · Vaugneray · Messimy</span>
+  </div>
+</header>
+
+<div class="stats">
+  <div class="stat"><div class="n" id="stat-total">–</div><div class="l">Annonces ajoutées</div></div>
+  <div class="stat"><div class="n" id="stat-fav">–</div><div class="l">Coups de cœur ❤️</div></div>
+  <div class="stat"><div class="n" id="stat-visit">–</div><div class="l">À visiter 📅</div></div>
+</div>
+
+<div class="add-section">
+  <div class="add-card">
+    <div class="add-header" id="toggle-form" onclick="toggleForm()">
+      <span style="font-size:1.3em">➕</span>
+      <h2>Ajouter une annonce</h2>
+      <span class="toggle" id="toggle-icon">▼</span>
+    </div>
+    <div class="add-body" id="add-body">
+
+      <!-- SETUP JSONBin -->
+      <div class="setup-box" id="setup-box">
+        <b>⚙️ Configuration requise (1 fois)</b><br>
+        Pour partager les annonces entre vous deux, créez un compte gratuit sur
+        <a href="https://jsonbin.io" target="_blank">jsonbin.io</a> →
+        <b>API Keys</b> → copiez votre clé ici :<br>
+        <input type="text" id="cfg-apikey" placeholder="$2a$10$XXXXXXXXXXXXXXXXXXXX..." style="margin-top:8px" />
+        <br><br>
+        Puis cliquez <b>"Initialiser le stockage"</b> — à faire une seule fois sur un seul appareil.
+        L'autre personne devra juste entrer le <b>BIN ID</b> qui s'affichera.
+        <br><br>
+        <button class="btn-add" onclick="initBin()" style="margin-top:0">🚀 Initialiser le stockage</button>
+        <div id="bin-result" style="margin-top:10px;font-weight:600"></div>
+        <br>
+        <b>Déjà un BIN ID ?</b> Entrez-le ici :<br>
+        <input type="text" id="cfg-binid" placeholder="6834XXXXXXXXXXXXXXXXXX" style="margin-top:6px" />
+        <input type="text" id="cfg-apikey2" placeholder="Clé API JSONBin" style="margin-top:6px" />
+        <button class="btn-add" onclick="connectBin()" style="margin-top:8px">🔗 Se connecter</button>
+      </div>
+
+      <div class="form-row full">
+        <div><label>Lien de l'annonce *</label><input type="url" id="f-url" placeholder="https://www.leboncoin.fr/…" /></div>
+      </div>
+      <div class="form-row full">
+        <div><label>Titre *</label><input type="text" id="f-titre" placeholder="Maison 5 pièces avec jardin…" /></div>
+      </div>
+      <div class="form-row three">
+        <div><label>Prix (€/mois)</label><input type="number" id="f-prix" placeholder="1100" /></div>
+        <div><label>Surface (m²)</label><input type="number" id="f-surface" placeholder="95" /></div>
+        <div><label>Nb pièces</label><input type="number" id="f-pieces" placeholder="5" /></div>
+      </div>
+      <div class="form-row">
+        <div><label>Ville</label><input type="text" id="f-ville" placeholder="Francheville" /></div>
+        <div><label>DPE</label>
+          <select id="f-dpe"><option value="">Inconnu</option>
+            <option>A</option><option>B</option><option>C</option>
+            <option>D</option><option>E</option><option>F</option><option>G</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div><label>Source</label>
+          <select id="f-source"><option>LeBonCoin</option><option>SeLoger</option>
+            <option>PAP</option><option>Bien'ici</option><option>Logic-Immo</option><option>Autre</option>
+          </select>
+        </div>
+        <div><label>URL image (optionnel)</label><input type="url" id="f-image" placeholder="https://…" /></div>
+      </div>
+      <div class="form-row full">
+        <div><label>Notes / Remarques</label>
+          <textarea id="f-notes" placeholder="Proche école, grand jardin, quartier calme…"></textarea>
+        </div>
+      </div>
+      <button class="btn-add" onclick="ajouterAnnonce()">✅ Ajouter l'annonce</button>
+    </div>
+  </div>
+</div>
+
+<div class="filters">
+  <button class="active" onclick="filtrer('toutes',this)">Toutes</button>
+  <button onclick="filtrer('fav',this)">❤️ Coups de cœur</button>
+  <button onclick="filtrer('visit',this)">📅 À visiter</button>
+  <button onclick="filtrer('new',this)">🆕 Nouvelles</button>
+  <button onclick="filtrer('reject',this)">🗑️ Écartées</button>
+</div>
+<div class="grid" id="grid">
+  <div class="loader" id="loader">⏳ Chargement…</div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ─── CONFIG ────────────────────────────────────────────────────────────────
+const JSONBIN_BASE = 'https://api.jsonbin.io/v3';
+let BIN_ID  = localStorage.getItem('appart_bin_id')  || '';
+let API_KEY = localStorage.getItem('appart_api_key') || '';
+let filtreActuel = 'toutes';
+
+function isConfigured() { return BIN_ID && API_KEY; }
+
+// ─── JSONBIN API ───────────────────────────────────────────────────────────
+async function readBin() {
+  const r = await fetch(`${JSONBIN_BASE}/b/${BIN_ID}/latest`, {
+    headers: { 'X-Master-Key': API_KEY }
+  });
+  if (!r.ok) throw new Error('Lecture impossible');
+  const d = await r.json();
+  return d.record || [];
+}
+
+async function writeBin(data) {
+  const r = await fetch(`${JSONBIN_BASE}/b/${BIN_ID}`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json', 'X-Master-Key': API_KEY },
+    body: JSON.stringify(data)
+  });
+  if (!r.ok) throw new Error('Écriture impossible');
+}
+
+async function initBin() {
+  const key = document.getElementById('cfg-apikey').value.trim();
+  if (!key) { toast('⚠️ Entrez votre clé API'); return; }
+  try {
+    const r = await fetch(`${JSONBIN_BASE}/b`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'X-Master-Key': key, 'X-Bin-Name': 'appart-hunter' },
+      body: JSON.stringify([])
+    });
+    if (!r.ok) throw new Error('Clé invalide ?');
+    const d = await r.json();
+    BIN_ID  = d.metadata.id;
+    API_KEY = key;
+    localStorage.setItem('appart_bin_id',  BIN_ID);
+    localStorage.setItem('appart_api_key', API_KEY);
+    document.getElementById('bin-result').innerHTML =
+      `✅ Stockage créé !<br>🔑 <b>BIN ID : <code style="background:#fef9c3;padding:2px 6px;border-radius:4px">${BIN_ID}</code></b><br>
+       Donne ce BIN ID + ta clé API à ta conjointe pour qu'elle se connecte.`;
+    document.getElementById('setup-box').style.background='#f0fdf4';
+    renderAll();
+  } catch(e) { toast('❌ Erreur : '+e.message); }
+}
+
+async function connectBin() {
+  const bid = document.getElementById('cfg-binid').value.trim();
+  const key = document.getElementById('cfg-apikey2').value.trim();
+  if (!bid || !key) { toast('⚠️ BIN ID et clé API requis'); return; }
+  BIN_ID = bid; API_KEY = key;
+  localStorage.setItem('appart_bin_id', BIN_ID);
+  localStorage.setItem('appart_api_key', API_KEY);
+  toast('🔗 Connexion en cours…');
+  renderAll();
+}
+
+// ─── HELPERS ───────────────────────────────────────────────────────────────
+const DPE_COLORS = {A:{bg:'#1a9641',tc:'#fff'},B:{bg:'#52b241',tc:'#fff'},C:{bg:'#a6d96a',tc:'#333'},D:{bg:'#d4c84a',tc:'#333'},E:{bg:'#fdae61',tc:'#333'},F:{bg:'#d7191c',tc:'#fff'},G:{bg:'#7b0000',tc:'#fff'}};
+function badgeDpe(dpe){if(!dpe)return'<span class="dpe-badge" style="background:#e5e7eb;color:#6b7280">?</span>';const c=DPE_COLORS[dpe.toUpperCase()]||{bg:'#ccc',tc:'#333'};return`<span class="dpe-badge" style="background:${c.bg};color:${c.tc}">${dpe.toUpperCase()}</span>`}
+function scoreColor(s){return s>=8?'#16a34a':s>=6?'#ea580c':'#dc2626'}
+function calcScore(a){let s=5;const p=parseInt(a.prix)||0;if(p>0){if(p<=950)s+=2;else if(p<=1100)s+=1;else if(p>1200)s-=1}const d=(a.dpe||'').toUpperCase();if(d==='A')s+=2;else if(d==='B')s+=1;else if(d==='D'||d==='E')s-=1;const sf=parseInt(a.surface)||0;if(sf>=90)s++;if(sf>=110)s++;return Math.max(0,Math.min(10,s))}
+const STATUTS={new:{label:'🆕 Nouvelle',cls:'status-new',bar:'bar-new'},fav:{label:'❤️ Coup de cœur',cls:'status-fav',bar:'bar-fav'},visit:{label:'📅 À visiter',cls:'status-visit',bar:'bar-visit'},reject:{label:'🗑️ Écartée',cls:'status-reject',bar:'bar-reject'}};
+
+function renderCard(a){
+  const score=calcScore(a);
+  const st=STATUTS[a.statut||'new'];
+  const img=a.image?`<img class="card-img" src="${a.image}" onerror="this.parentNode.innerHTML='<div class=card-img-placeholder>🏠</div>'">`:`<div class="card-img-placeholder">🏠</div>`;
+  return `<div class="card ${a.statut==='reject'?'rejected':''}" data-id="${a.id}">
+    <div class="status-bar ${st.bar}"></div>
+    <button class="btn-delete" onclick="supprimer('${a.id}')" title="Supprimer">✕</button>
+    ${img}
+    <div class="card-body">
+      <div class="card-top"><span class="card-title">${a.titre||'Sans titre'}</span><span class="score-badge" style="background:${scoreColor(score)}">${score}/10</span></div>
+      <div class="card-meta">
+        ${a.prix?`<span>💰 <b>${a.prix}€</b>/mois</span>`:''}
+        ${a.surface?`<span>📐 ${a.surface}m²</span>`:''}
+        ${a.pieces?`<span>🚪 ${a.pieces} pièces</span>`:''}
+        ${a.ville?`<span>📍 ${a.ville}</span>`:''}
+        <span>⚡ DPE ${badgeDpe(a.dpe)}</span>
+      </div>
+      <div class="card-source">${a.source||''} · Ajouté le ${a.date||''}</div>
+      ${a.notes?`<div class="card-desc">${a.notes}</div>`:''}
+      <div class="card-footer">
+        <a href="${a.url||'#'}" target="_blank" class="btn-link">Voir l'annonce →</a>
+        <button class="btn-status ${st.cls}" onclick="cycleStatut('${a.id}')">${st.label}</button>
+      </div>
+    </div>
+  </div>`;
+}
+
+async function renderAll(f){
+  if(f) filtreActuel=f;
+  const grid=document.getElementById('grid');
+  const loader=document.getElementById('loader');
+
+  if(!isConfigured()){
+    loader.textContent='⚙️ Configurez le stockage partagé ci-dessus pour commencer.';
+    document.getElementById('stat-total').textContent='–';
+    document.getElementById('stat-fav').textContent='–';
+    document.getElementById('stat-visit').textContent='–';
+    toggleForm();
+    return;
+  }
+
+  loader.style.display='block';
+  Array.from(grid.children).forEach(c=>{if(!c.id)c.remove();});
+
+  try {
+    const data=await readBin();
+    loader.style.display='none';
+
+    let items=data;
+    if(filtreActuel==='fav')   items=data.filter(a=>a.statut==='fav');
+    if(filtreActuel==='visit') items=data.filter(a=>a.statut==='visit');
+    if(filtreActuel==='new')   items=data.filter(a=>!a.statut||a.statut==='new');
+    if(filtreActuel==='reject')items=data.filter(a=>a.statut==='reject');
+
+    if(items.length===0){
+      const e=document.createElement('div');
+      e.className='empty';e.id='empty-msg';
+      e.innerHTML='<div class="icon">🏠</div><p>Aucune annonce ici.<br>Ajoutez-en une via le formulaire !</p>';
+      grid.appendChild(e);
+    } else {
+      items.forEach(a=>{const d=document.createElement('div');d.innerHTML=renderCard(a);grid.appendChild(d.firstElementChild);});
+    }
+
+    document.getElementById('stat-total').textContent=data.length;
+    document.getElementById('stat-fav').textContent=data.filter(a=>a.statut==='fav').length;
+    document.getElementById('stat-visit').textContent=data.filter(a=>a.statut==='visit').length;
+  } catch(e){
+    loader.textContent='❌ Erreur de connexion. Vérifiez vos identifiants.';
+  }
+}
+
+function filtrer(mode,btn){
+  filtreActuel=mode;
+  document.querySelectorAll('.filters button').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  renderAll();
+}
+
+async function cycleStatut(id){
+  const ordre=['new','fav','visit','reject'];
+  try{
+    const data=await readBin();
+    const idx=data.findIndex(a=>a.id===id);if(idx===-1)return;
+    const next=ordre[(ordre.indexOf(data[idx].statut||'new')+1)%ordre.length];
+    data[idx].statut=next;
+    await writeBin(data);
+    renderAll();
+    toast(next==='fav'?'❤️ Coup de cœur !':next==='visit'?'📅 À visiter !':next==='reject'?'🗑️ Écartée':'🆕 Remise en nouvelles');
+  }catch(e){toast('❌ Erreur : '+e.message);}
+}
+
+async function supprimer(id){
+  if(!confirm('Supprimer cette annonce ?'))return;
+  try{
+    const data=(await readBin()).filter(a=>a.id!==id);
+    await writeBin(data);renderAll();toast('🗑️ Supprimée');
+  }catch(e){toast('❌ Erreur : '+e.message);}
+}
+
+async function ajouterAnnonce(){
+  const url=document.getElementById('f-url').value.trim();
+  const titre=document.getElementById('f-titre').value.trim();
+  if(!url||!titre){toast('⚠️ URL et titre obligatoires');return;}
+  if(!isConfigured()){toast('⚠️ Configurez d\'abord le stockage');return;}
+  try{
+    const data=await readBin();
+    data.unshift({
+      id:Date.now().toString(),url,titre,
+      prix:document.getElementById('f-prix').value.trim(),
+      surface:document.getElementById('f-surface').value.trim(),
+      pieces:document.getElementById('f-pieces').value.trim(),
+      ville:document.getElementById('f-ville').value.trim(),
+      dpe:document.getElementById('f-dpe').value,
+      source:document.getElementById('f-source').value,
+      image:document.getElementById('f-image').value.trim(),
+      notes:document.getElementById('f-notes').value.trim(),
+      statut:'new',
+      date:new Date().toLocaleDateString('fr-FR'),
+    });
+    await writeBin(data);
+    ['f-url','f-titre','f-prix','f-surface','f-pieces','f-ville','f-image','f-notes'].forEach(id=>document.getElementById(id).value='');
+    document.getElementById('f-dpe').value='';
+    renderAll();toast('✅ Annonce ajoutée !');
+    document.getElementById('add-body').classList.remove('open');
+    document.getElementById('toggle-form').classList.remove('open');
+  }catch(e){toast('❌ Erreur : '+e.message);}
+}
+
+function toggleForm(){
+  document.getElementById('add-body').classList.toggle('open');
+  document.getElementById('toggle-form').classList.toggle('open');
+}
+
+function toast(msg){const el=document.getElementById('toast');el.textContent=msg;el.classList.add('show');setTimeout(()=>el.classList.remove('show'),2800);}
+
+renderAll();
+if(!isConfigured())toggleForm();
+</script>
+</body>
+</html>
