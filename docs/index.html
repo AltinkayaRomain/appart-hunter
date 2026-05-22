@@ -1,639 +1,233 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>🏠 Chasseur d'apparts — 69 Ouest</title>
-<style>
-  *{box-sizing:border-box;margin:0;padding:0}
-  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f0f4f8;min-height:100vh}
-  header{background:linear-gradient(135deg,#1a2340,#2563eb);color:#fff;padding:28px 24px 20px;text-align:center}
-  header h1{font-size:1.6em;margin-bottom:6px}
-  header p{opacity:.85;font-size:0.9em}
-  .stats{display:flex;justify-content:center;gap:20px;margin:18px auto;max-width:700px;flex-wrap:wrap;padding:0 16px}
-  .stat{background:#fff;border-radius:10px;padding:14px 24px;text-align:center;box-shadow:0 1px 6px rgba(0,0,0,0.08);min-width:130px}
-  .stat .n{font-size:2em;font-weight:800;color:#2563eb}
-  .stat .l{font-size:0.82em;color:#666;margin-top:2px}
-  .filters{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;padding:0 16px 16px}
-  .filters button{border:none;padding:7px 16px;border-radius:20px;cursor:pointer;font-size:0.85em;font-weight:600;transition:.15s}
-  .filters button.active{background:#2563eb;color:#fff}
-  .filters button:not(.active){background:#fff;color:#444;box-shadow:0 1px 4px rgba(0,0,0,0.1)}
-  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:18px;padding:0 16px 40px;max-width:1200px;margin:0 auto}
-  .card{transition:transform .15s,box-shadow .15s}
-  .card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,0.13)}
-  .card.invalid{opacity:.6}
-  .criteria{background:#fff;max-width:750px;margin:0 auto 20px;border-radius:10px;padding:14px 20px;box-shadow:0 1px 6px rgba(0,0,0,0.07);font-size:0.85em;color:#444;display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
-  .criteria span{background:#f0f4f8;padding:4px 10px;border-radius:20px}
-  .sources{text-align:center;font-size:0.78em;color:#94a3b8;margin-bottom:12px}
-</style>
-</head>
-<body>
-<header>
-  <h1>🏠 Chasseur d'appartements</h1>
-  <p>Zone 69 Ouest · Mis à jour le 22/05/2026 à 08:55</p>
-</header>
-<div class="stats">
-  <div class="stat"><div class="n">0</div><div class="l">Annonces valides</div></div>
-  <div class="stat"><div class="n">30</div><div class="l">Total analysées</div></div>
-  <div class="stat"><div class="n">1h</div><div class="l">Fréquence MAJ</div></div>
-</div>
-<div class="criteria">
-  <span>💰 800–1 300€</span><span>🚪 3 chambres min</span><span>⚡ DPE ≤ C</span>
-  <span>📍 Brindas, Tassin, Francheville, Charbonnières, Vaugneray, Messimy, Craponne…</span>
-</div>
+<!DOCTYPE html><html lang="fr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>🏠 Chasseur d'apparts — 69 Ouest</title>
+<style>*{box-sizing:border-box;margin:0;padding:0}body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f0f4f8}
+header{background:linear-gradient(135deg,#1a2340,#2563eb);color:#fff;padding:28px 24px 20px;text-align:center}header h1{font-size:1.6em;margin-bottom:6px}header p{opacity:.85;font-size:.9em}
+.stats{display:flex;justify-content:center;gap:20px;margin:18px auto;max-width:700px;flex-wrap:wrap;padding:0 16px}.stat{background:#fff;border-radius:10px;padding:14px 24px;text-align:center;box-shadow:0 1px 6px rgba(0,0,0,.08);min-width:130px}.stat .n{font-size:2em;font-weight:800;color:#2563eb}.stat .l{font-size:.82em;color:#666;margin-top:2px}
+.filters{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;padding:0 16px 16px}.filters button{border:none;padding:7px 16px;border-radius:20px;cursor:pointer;font-size:.85em;font-weight:600}.filters button.active{background:#2563eb;color:#fff}.filters button:not(.active){background:#fff;color:#444;box-shadow:0 1px 4px rgba(0,0,0,.1)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:18px;padding:0 16px 40px;max-width:1200px;margin:0 auto}.card{transition:transform .15s,box-shadow .15s}.card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,.13)}.card.invalid{opacity:.6}
+.criteria{background:#fff;max-width:750px;margin:0 auto 12px;border-radius:10px;padding:14px 20px;box-shadow:0 1px 6px rgba(0,0,0,.07);font-size:.85em;color:#444;display:flex;flex-wrap:wrap;gap:10px;justify-content:center}.criteria span{background:#f0f4f8;padding:4px 10px;border-radius:20px}
+.sources{text-align:center;font-size:.78em;color:#94a3b8;margin-bottom:12px}</style></head>
+<body><header><h1>🏠 Chasseur d'appartements</h1><p>Zone 69 Ouest · Mis à jour le 22/05/2026 à 08:59</p></header>
+<div class="stats"><div class="stat"><div class="n">0</div><div class="l">Annonces valides</div></div><div class="stat"><div class="n">30</div><div class="l">Total analysées</div></div><div class="stat"><div class="n">1h</div><div class="l">Fréquence MAJ</div></div></div>
+<div class="criteria"><span>💰 800–1 300€</span><span>🚪 3 chambres min</span><span>⚡ DPE ≤ C</span><span>📍 Brindas, Tassin, Francheville, Charbonnières, Vaugneray, Messimy, Craponne…</span></div>
 <div class="sources">Sources : Bien'ici (30)</div>
-<div class="filters">
-  <button class="active" onclick="filtrer('tous',this)">Toutes (30)</button>
-  <button onclick="filtrer('valides',this)">✅ Valides (0)</button>
-  <button onclick="filtrer('top',this)">⭐ Score ≥ 7</button>
-</div>
-<div class="grid" id="grid">
-        <div class="card invalid" style="position:relative;background:#fff;border-radius:10px;box-shadow:0 2px 12px rgba(0,0,0,0.09);overflow:hidden;display:flex;flex-direction:column">
-          <div style="position:absolute;top:0;left:0;right:0;background:rgba(0,0,0,0.55);color:#fff;font-size:0.75em;padding:3px 8px;border-radius:8px 8px 0 0">⚠️ Hors critères</div><img src="https://file.bienici.com/photo/ics-apa_LAVAL_loc-GES02820010-381_box.ics.fr_apa_LAVAL_juk_location_photo_image00002-2218087151937213528.jpg" style="width:100%;height:150px;object-fit:cover;border-radius:8px 8px 0 0;display:block" onerror="this.style.display='none'">
-          <div style="padding:14px;flex:1;display:flex;flex-direction:column;gap:6px">
-            <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px">
-              <span style="font-weight:700;font-size:0.95em;color:#1a2340;line-height:1.3"></span>
-              <span style="min-width:38px;text-align:center;background:#f39c12;color:#fff;border-radius:20px;padding:2px 9px;font-weight:700;font-size:0.85em">7/10</span>
-            </div>
-            <div style="display:flex;flex-wrap:wrap;gap:6px;font-size:0.82em;color:#555">
-              <span>💰 <b>992€</b></span>
-              <span>📐 115.49m²</span>
-              <span>🚪 5 pièces</span>
-              <span>📍 Laval</span>
-              <span>⚡ DPE <span style="background:#ffffbf;color:#333;padding:2px 8px;border-radius:4px;font-weight:700;font-size:0.85em">D</span></span>
-            </div>
-            <div style="font-size:0.78em;color:#888">Bien'ici · 22/05/2026 08:55</div>
-            <div style="font-size:0.82em;color:#444;margin-top:2px;flex:1">Centre ville de Laval, T5 offrant une entrée avec placard sur salon, une cuisine aménagée et équipée (lave-vaisselle), un séjour et un wc.
-Au 1er étage, un palier, un wc, une salle de bains, 2 chambre…</div>
-            <a href="https://www.bienici.com/annonce/ics-apa_LAVAL_loc-GES02820010-381" target="_blank" style="margin-top:8px;display:inline-block;background:#2563eb;color:#fff;text-decoration:none;padding:7px 14px;border-radius:6px;font-size:0.85em;font-weight:600;text-align:center">Voir l'annonce →</a>
-          </div>
-        </div>
-        <div class="card invalid" style="position:relative;background:#fff;border-radius:10px;box-shadow:0 2px 12px rgba(0,0,0,0.09);overflow:hidden;display:flex;flex-direction:column">
-          <div style="position:absolute;top:0;left:0;right:0;background:rgba(0,0,0,0.55);color:#fff;font-size:0.75em;padding:3px 8px;border-radius:8px 8px 0 0">⚠️ Hors critères</div><img src="https://file.bienici.com/photo/ics-dom_DOMIANS_loc-LMAI39_box.ics.fr_dom_DOMIANS_san_location_photo_WhatsApp_Image_2026-05-19_at_10_10_17-1409297848862041351.jpg" style="width:100%;height:150px;object-fit:cover;border-radius:8px 8px 0 0;display:block" onerror="this.style.display='none'">
-          <div style="padding:14px;flex:1;display:flex;flex-direction:column;gap:6px">
-            <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px">
-              <span style="font-weight:700;font-size:0.95em;color:#1a2340;line-height:1.3"></span>
-              <span style="min-width:38px;text-align:center;background:#e74c3c;color:#fff;border-radius:20px;padding:2px 9px;font-weight:700;font-size:0.85em">5/10</span>
-            </div>
-            <div style="display:flex;flex-wrap:wrap;gap:6px;font-size:0.82em;color:#555">
-              <span>💰 <b>1300€</b></span>
-              <span>📐 100m²</span>
-              <span>🚪 4 pièces</span>
-              <span>📍 Pia</span>
-              <span>⚡ DPE <span style="background:#ccc;color:#333;padding:2px 8px;border-radius:4px;font-weight:700;font-size:0.85em">VI</span></span>
-            </div>
-            <div style="font-size:0.78em;color:#888">Bien'ici · 22/05/2026 08:55</div>
-            <div style="font-size:0.82em;color:#444;margin-top:2px;flex:1">Villa T4 R+1 neuve de 100 m², climatisée avec terrasse et jardin dans un lotissement calme de la commune de Pia - À saisir, produit rare !
-Agréable villa T4 de 100 m² sur deux niveaux, située dans un …</div>
-            <a href="https://www.bienici.com/annonce/ics-dom_DOMIANS_loc-LMAI39" target="_blank" style="margin-top:8px;display:inline-block;background:#2563eb;color:#fff;text-decoration:none;padding:7px 14px;border-radius:6px;font-size:0.85em;font-weight:600;text-align:center">Voir l'annonce →</a>
-          </div>
-        </div>
-        <div class="card invalid" style="position:relative;background:#fff;border-radius:10px;box-shadow:0 2px 12px rgba(0,0,0,0.09);overflow:hidden;display:flex;flex-direction:column">
-          <div style="position:absolute;top:0;left:0;right:0;background:rgba(0,0,0,0.55);color:#fff;font-size:0.75em;padding:3px 8px;border-radius:8px 8px 0 0">⚠️ Hors critères</div><img src="https://file.bienici.com/photo/century-21-202_3784_564_images.century21.fr_202_3784_c21_202_3784_564_1_751D9C21-4CE1-4398-9DBE-B93CD71BC600.jpg" style="width:100%;height:150px;object-fit:cover;border-radius:8px 8px 0 0;display:block" onerror="this.style.display='none'">
-          <div style="padding:14px;flex:1;display:flex;flex-direction:column;gap:6px">
-            <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px">
-              <span style="font-weight:700;font-size:0.95em;color:#1a2340;line-height:1.3"></span>
-              <span style="min-width:38px;text-align:center;background:#f39c12;color:#fff;border-radius:20px;padding:2px 9px;font-weight:700;font-size:0.85em">7/10</span>
-            </div>
-            <div style="display:flex;flex-wrap:wrap;gap:6px;font-size:0.82em;color:#555">
-              <span>💰 <b>1250€</b></span>
-              <span>📐 103m²</span>
-              <span>🚪 4 pièces</span>
-              <span>📍 Thézan-lès-Béziers</span>
-              <span>⚡ DPE <span style="background:#1a9641;color:#fff;padding:2px 8px;border-radius:4px;font-weight:700;font-size:0.85em">A</span></span>
-            </div>
-            <div style="font-size:0.78em;color:#888">Bien'ici · 22/05/2026 08:55</div>
-            <div style="font-size:0.82em;color:#444;margin-top:2px;flex:1">Maison individuelle en R+1 avec Garage et Jardin - THEZAN LES BEZIERS<br>Dans un lotissement très récent, venez découvrir cette maison composée, au RDC, d'une entrée donnant sur une spacieuse pièce à …</div>
-            <a href="https://www.bienici.com/annonce/century-21-202_3784_564" target="_blank" style="margin-top:8px;display:inline-block;background:#2563eb;color:#fff;text-decoration:none;padding:7px 14px;border-radius:6px;font-size:0.85em;font-weight:600;text-align:center">Voir l'annonce →</a>
-          </div>
-        </div>
-        <div class="card invalid" style="position:relative;background:#fff;border-radius:10px;box-shadow:0 2px 12px rgba(0,0,0,0.09);overflow:hidden;display:flex;flex-direction:column">
-          <div style="position:absolute;top:0;left:0;right:0;background:rgba(0,0,0,0.55);color:#fff;font-size:0.75em;padding:3px 8px;border-radius:8px 8px 0 0">⚠️ Hors critères</div><img src="https://file.bienici.com/photo/century-21-202_416_69950_images.century21.fr_202_416_c21_202_416_69950_1_DEF258F6-6029-4FD4-9A61-06F6006E09DB.jpg" style="width:100%;height:150px;object-fit:cover;border-radius:8px 8px 0 0;display:block" onerror="this.style.display='none'">
-          <div style="padding:14px;flex:1;display:flex;flex-direction:column;gap:6px">
-            <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px">
-              <span style="font-weight:700;font-size:0.95em;color:#1a2340;line-height:1.3"></span>
-              <span style="min-width:38px;text-align:center;background:#e74c3c;color:#fff;border-radius:20px;padding:2px 9px;font-weight:700;font-size:0.85em">5/10</span>
-            </div>
-            <div style="display:flex;flex-wrap:wrap;gap:6px;font-size:0.82em;color:#555">
-              <span>💰 <b>1245€</b></span>
-              <span>📐 95m²</span>
-              <span>🚪 4 pièces</span>
-              <span>📍 Saint-Gély-du-Fesc</span>
-              <span>⚡ DPE <span style="background:#a6d96a;color:#fff;padding:2px 8px;border-radius:4px;font-weight:700;font-size:0.85em">C</span></span>
-            </div>
-            <div style="font-size:0.78em;color:#888">Bien'ici · 22/05/2026 08:55</div>
-            <div style="font-size:0.82em;color:#444;margin-top:2px;flex:1">Votre agence CENTURY 21 Granié Immobilier vous propose à la location, à Saint-Gély-du-Fesc, à seulement 10 minutes au nord de Montpellier, au sein d'un lotissement sécurisé et fermé avec piscine, une …</div>
-            <a href="https://www.bienici.com/annonce/century-21-202_416_69950" target="_blank" style="margin-top:8px;display:inline-block;background:#2563eb;color:#fff;text-decoration:none;padding:7px 14px;border-radius:6px;font-size:0.85em;font-weight:600;text-align:center">Voir l'annonce →</a>
-          </div>
-        </div>
-        <div class="card invalid" style="position:relative;background:#fff;border-radius:10px;box-shadow:0 2px 12px rgba(0,0,0,0.09);overflow:hidden;display:flex;flex-direction:column">
-          <div style="position:absolute;top:0;left:0;right:0;background:rgba(0,0,0,0.55);color:#fff;font-size:0.75em;padding:3px 8px;border-radius:8px 8px 0 0">⚠️ Hors critères</div><img src="https://file.bienici.com/photo/century-21-202_3122_5702_images.century21.fr_202_3122_c21_202_3122_5702_1_C92C21DD-4305-4BCD-99EB-411FBA412239.jpg" style="width:100%;height:150px;object-fit:cover;border-radius:8px 8px 0 0;display:block" onerror="this.style.display='none'">
-          <div style="padding:14px;flex:1;display:flex;flex-direction:column;gap:6px">
-            <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px">
-              <span style="font-weight:700;font-size:0.95em;color:#1a2340;line-height:1.3"></span>
-              <span style="min-width:38px;text-align:center;background:#f39c12;color:#fff;border-radius:20px;padding:2px 9px;font-weight:700;font-size:0.85em">6/10</span>
-            </div>
-            <div style="display:flex;flex-wrap:wrap;gap:6px;font-size:0.82em;color:#555">
-              <span>💰 <b>1241.78€</b></span>
-              <span>📐 77.95m²</span>
-              <span>🚪 4 pièces</span>
-              <span>📍 Mantes-la-Jolie</span>
-              <span>⚡ DPE <span style="background:#a6d96a;color:#fff;padding:2px 8px;border-radius:4px;font-weight:700;font-size:0.85em">C</span></span>
-            </div>
-            <div style="font-size:0.78em;color:#888">Bien'ici · 22/05/2026 08:55</div>
-            <div style="font-size:0.82em;color:#444;margin-top:2px;flex:1">En plein cœur du centre-ville de Mantes La Jolie, dans la résidence Cours des Dames de standing, à 5 minutes de la gare, proches de toutes commodités, Century 21 La Mantoise vous propose cet apparteme…</div>
-            <a href="https://www.bienici.com/annonce/century-21-202_3122_5702" target="_blank" style="margin-top:8px;display:inline-block;background:#2563eb;color:#fff;text-decoration:none;padding:7px 14px;border-radius:6px;font-size:0.85em;font-weight:600;text-align:center">Voir l'annonce →</a>
-          </div>
-        </div>
-        <div class="card invalid" style="position:relative;background:#fff;border-radius:10px;box-shadow:0 2px 12px rgba(0,0,0,0.09);overflow:hidden;display:flex;flex-direction:column">
-          <div style="position:absolute;top:0;left:0;right:0;background:rgba(0,0,0,0.55);color:#fff;font-size:0.75em;padding:3px 8px;border-radius:8px 8px 0 0">⚠️ Hors critères</div><img src="https://file.bienici.com/photo/century-21-202_2806_24310_images.century21.fr_202_2806_c21_202_2806_24310_1_43DB6881-BC57-4BC5-AB06-D2CD82D71365.jpg" style="width:100%;height:150px;object-fit:cover;border-radius:8px 8px 0 0;display:block" onerror="this.style.display='none'">
-          <div style="padding:14px;flex:1;display:flex;flex-direction:column;gap:6px">
-            <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px">
-              <span style="font-weight:700;font-size:0.95em;color:#1a2340;line-height:1.3"></span>
-              <span style="min-width:38px;text-align:center;background:#f39c12;color:#fff;border-radius:20px;padding:2px 9px;font-weight:700;font-size:0.85em">7/10</span>
-            </div>
-            <div style="display:flex;flex-wrap:wrap;gap:6px;font-size:0.82em;color:#555">
-              <span>💰 <b>1197€</b></span>
-              <span>📐 86.51m²</span>
-              <span>🚪 4 pièces</span>
-              <span>📍 Moret-sur-Loing</span>
-              <span>⚡ DPE <span style="background:#ccc;color:#333;padding:2px 8px;border-radius:4px;font-weight:700;font-size:0.85em">NS</span></span>
-            </div>
-            <div style="font-size:0.78em;color:#888">Bien'ici · 22/05/2026 08:55</div>
-            <div style="font-size:0.82em;color:#444;margin-top:2px;flex:1">Au sein du ' Logis Saint Jacques', plein cœur Moret sur Loing!<br>Appartement de type F4, au troisième étage avec ascenseur,  entièrement rénové comprenant :<br>Une cuisine aménagée et équipée (réfrig…</div>
-            <a href="https://www.bienici.com/annonce/century-21-202_2806_24310" target="_blank" style="margin-top:8px;display:inline-block;background:#2563eb;color:#fff;text-decoration:none;padding:7px 14px;border-radius:6px;font-size:0.85em;font-weight:600;text-align:center">Voir l'annonce →</a>
-          </div>
-        </div>
-        <div class="card invalid" style="position:relative;background:#fff;border-radius:10px;box-shadow:0 2px 12px rgba(0,0,0,0.09);overflow:hidden;display:flex;flex-direction:column">
-          <div style="position:absolute;top:0;left:0;right:0;background:rgba(0,0,0,0.55);color:#fff;font-size:0.75em;padding:3px 8px;border-radius:8px 8px 0 0">⚠️ Hors critères</div><img src="https://file.bienici.com/photo/century-21-202_416_69992_images.century21.fr_202_416_c21_202_416_69992_1_2E2BFE4C-8E8F-4BDF-8763-ABF02BE28BC9.jpg" style="width:100%;height:150px;object-fit:cover;border-radius:8px 8px 0 0;display:block" onerror="this.style.display='none'">
-          <div style="padding:14px;flex:1;display:flex;flex-direction:column;gap:6px">
-            <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px">
-              <span style="font-weight:700;font-size:0.95em;color:#1a2340;line-height:1.3"></span>
-              <span style="min-width:38px;text-align:center;background:#e74c3c;color:#fff;border-radius:20px;padding:2px 9px;font-weight:700;font-size:0.85em">4/10</span>
-            </div>
-            <div style="display:flex;flex-wrap:wrap;gap:6px;font-size:0.82em;color:#555">
-              <span>💰 <b>1190€</b></span>
-              <span>📐 71m²</span>
-              <span>🚪 4 pièces</span>
-              <span>📍 Montpellier</span>
-              <span>⚡ DPE <span style="background:#ffffbf;color:#333;padding:2px 8px;border-radius:4px;font-weight:700;font-size:0.85em">D</span></span>
-            </div>
-            <div style="font-size:0.78em;color:#888">Bien'ici · 22/05/2026 08:55</div>
-            <div style="font-size:0.82em;color:#444;margin-top:2px;flex:1">Rare à la location, cette maison de ville de plus de 71 m² habitables, entièrement refaite à neuf, vous séduira par son charme et ses prestations modernes, en plein cœur de Montpellier. Dès l'entrée, …</div>
-            <a href="https://www.bienici.com/annonce/century-21-202_416_69992" target="_blank" style="margin-top:8px;display:inline-block;background:#2563eb;color:#fff;text-decoration:none;padding:7px 14px;border-radius:6px;font-size:0.85em;font-weight:600;text-align:center">Voir l'annonce →</a>
-          </div>
-        </div>
-        <div class="card invalid" style="position:relative;background:#fff;border-radius:10px;box-shadow:0 2px 12px rgba(0,0,0,0.09);overflow:hidden;display:flex;flex-direction:column">
-          <div style="position:absolute;top:0;left:0;right:0;background:rgba(0,0,0,0.55);color:#fff;font-size:0.75em;padding:3px 8px;border-radius:8px 8px 0 0">⚠️ Hors critères</div><img src="https://file.bienici.com/photo/century-21-202_3250_3396_images.century21.fr_202_3250_c21_202_3250_3396_1_DDB066A0-ED6D-4B53-B8D6-90776CA48E88.jpg" style="width:100%;height:150px;object-fit:cover;border-radius:8px 8px 0 0;display:block" onerror="this.style.display='none'">
-          <div style="padding:14px;flex:1;display:flex;flex-direction:column;gap:6px">
-            <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px">
-              <span style="font-weight:700;font-size:0.95em;color:#1a2340;line-height:1.3"></span>
-              <span style="min-width:38px;text-align:center;background:#e74c3c;color:#fff;border-radius:20px;padding:2px 9px;font-weight:700;font-size:0.85em">4/10</span>
-            </div>
-            <div style="display:flex;flex-wrap:wrap;gap:6px;font-size:0.82em;color:#555">
-              <span>💰 <b>1180€</b></span>
-              <span>📐 82m²</span>
-              <span>🚪 4 pièces</span>
-              <span>📍 Romans-sur-Isère</span>
-              <span>⚡ DPE <span style="background:#ffffbf;color:#333;padding:2px 8px;border-radius:4px;font-weight:700;font-size:0.85em">D</span></span>
-            </div>
-            <div style="font-size:0.78em;color:#888">Bien'ici · 22/05/2026 08:55</div>
-            <div style="font-size:0.82em;color:#444;margin-top:2px;flex:1">ROMANS - Quartier des Ors très recherché ... <br>Chouette villa d'environ 82m², pièce de vie lumineuse, cuisine équipée (meubles, four, plaque et hotte), 3 chambres, salle d'eau avec wc, garage de 16m…</div>
-            <a href="https://www.bienici.com/annonce/century-21-202_3250_3396" target="_blank" style="margin-top:8px;display:inline-block;background:#2563eb;color:#fff;text-decoration:none;padding:7px 14px;border-radius:6px;font-size:0.85em;font-weight:600;text-align:center">Voir l'annonce →</a>
-          </div>
-        </div>
-        <div class="card invalid" style="position:relative;background:#fff;border-radius:10px;box-shadow:0 2px 12px rgba(0,0,0,0.09);overflow:hidden;display:flex;flex-direction:column">
-          <div style="position:absolute;top:0;left:0;right:0;background:rgba(0,0,0,0.55);color:#fff;font-size:0.75em;padding:3px 8px;border-radius:8px 8px 0 0">⚠️ Hors critères</div><img src="https://file.bienici.com/photo/century-21-202_813_26713_images.century21.fr_202_813_c21_202_813_26713_1_E0A3BF8B-9769-40CC-8921-E5B18A81B5B6.jpg" style="width:100%;height:150px;object-fit:cover;border-radius:8px 8px 0 0;display:block" onerror="this.style.display='none'">
-          <div style="padding:14px;flex:1;display:flex;flex-direction:column;gap:6px">
-            <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px">
-              <span style="font-weight:700;font-size:0.95em;color:#1a2340;line-height:1.3"></span>
-              <span style="min-width:38px;text-align:center;background:#f39c12;color:#fff;border-radius:20px;padding:2px 9px;font-weight:700;font-size:0.85em">6/10</span>
-            </div>
-            <div style="display:flex;flex-wrap:wrap;gap:6px;font-size:0.82em;color:#555">
-              <span>💰 <b>1160€</b></span>
-              <span>📐 114m²</span>
-              <span>🚪 6 pièces</span>
-              <span>📍 Bressols</span>
-              <span>⚡ DPE <span style="background:#ffffbf;color:#333;padding:2px 8px;border-radius:4px;font-weight:700;font-size:0.85em">D</span></span>
-            </div>
-            <div style="font-size:0.78em;color:#888">Bien'ici · 22/05/2026 08:55</div>
-            <div style="font-size:0.82em;color:#444;margin-top:2px;flex:1">LOCATION - A 2 Km centre du village de BRESSOLS : proche crèche, école maternelle, école primaire, Poste, commerces ... <br>Maison d'habitation T5 bis de plain pied, composée d'une salle de séjour ouv…</div>
-            <a href="https://www.bienici.com/annonce/century-21-202_813_26713" target="_blank" style="margin-top:8px;display:inline-block;background:#2563eb;color:#fff;text-decoration:none;padding:7px 14px;border-radius:6px;font-size:0.85em;font-weight:600;text-align:center">Voir l'annonce →</a>
-          </div>
-        </div>
-        <div class="card invalid" style="position:relative;background:#fff;border-radius:10px;box-shadow:0 2px 12px rgba(0,0,0,0.09);overflow:hidden;display:flex;flex-direction:column">
-          <div style="position:absolute;top:0;left:0;right:0;background:rgba(0,0,0,0.55);color:#fff;font-size:0.75em;padding:3px 8px;border-radius:8px 8px 0 0">⚠️ Hors critères</div><img src="https://file.bienici.com/photo/century-21-202_2251_11266_images.century21.fr_202_2251_c21_202_2251_11266_1_9C7CDA0A-B623-4051-9A32-0D29878DED2E.jpg" style="width:100%;height:150px;object-fit:cover;border-radius:8px 8px 0 0;display:block" onerror="this.style.display='none'">
-          <div style="padding:14px;flex:1;display:flex;flex-direction:column;gap:6px">
-            <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px">
-              <span style="font-weight:700;font-size:0.95em;color:#1a2340;line-height:1.3"></span>
-              <span style="min-width:38px;text-align:center;background:#f39c12;color:#fff;border-radius:20px;padding:2px 9px;font-weight:700;font-size:0.85em">7/10</span>
-            </div>
-            <div style="display:flex;flex-wrap:wrap;gap:6px;font-size:0.82em;color:#555">
-              <span>💰 <b>1026€</b></span>
-              <span>📐 67.65m²</span>
-              <span>🚪 4 pièces</span>
-              <span>📍 Saint-Félix</span>
-              <span>⚡ DPE <span style="background:#ffffbf;color:#333;padding:2px 8px;border-radius:4px;font-weight:700;font-size:0.85em">D</span></span>
-            </div>
-            <div style="font-size:0.78em;color:#888">Bien'ici · 22/05/2026 08:55</div>
-            <div style="font-size:0.82em;color:#444;margin-top:2px;flex:1">A 5 minutes de l'entrée d'autoroute d'ALBY SUR CHERAN - Dans une petite copropriété proche de toutes les commodités - Nous vous invitons à venir découvrir ce bel appartement de type T3bis. Vous appréc…</div>
-            <a href="https://www.bienici.com/annonce/century-21-202_2251_11266" target="_blank" style="margin-top:8px;display:inline-block;background:#2563eb;color:#fff;text-decoration:none;padding:7px 14px;border-radius:6px;font-size:0.85em;font-weight:600;text-align:center">Voir l'annonce →</a>
-          </div>
-        </div>
-        <div class="card invalid" style="position:relative;background:#fff;border-radius:10px;box-shadow:0 2px 12px rgba(0,0,0,0.09);overflow:hidden;display:flex;flex-direction:column">
-          <div style="position:absolute;top:0;left:0;right:0;background:rgba(0,0,0,0.55);color:#fff;font-size:0.75em;padding:3px 8px;border-radius:8px 8px 0 0">⚠️ Hors critères</div><img src="https://file.bienici.com/photo/century-21-202_3134_3187_images.century21.fr_202_3134_c21_202_3134_3187_1_0E0FABB5-AB8B-4AAC-91B5-0960D94B8331.jpg" style="width:100%;height:150px;object-fit:cover;border-radius:8px 8px 0 0;display:block" onerror="this.style.display='none'">
-          <div style="padding:14px;flex:1;display:flex;flex-direction:column;gap:6px">
-            <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px">
-              <span style="font-weight:700;font-size:0.95em;color:#1a2340;line-height:1.3"></span>
-              <span style="min-width:38px;text-align:center;background:#f39c12;color:#fff;border-radius:20px;padding:2px 9px;font-weight:700;font-size:0.85em">7/10</span>
-            </div>
-            <div style="display:flex;flex-wrap:wrap;gap:6px;font-size:0.82em;color:#555">
-              <span>💰 <b>990€</b></span>
-              <span>📐 63.61m²</span>
-              <span>🚪 4 pièces</span>
-              <span>📍 Rieux</span>
-              <span>⚡ DPE <span style="background:#ffffbf;color:#333;padding:2px 8px;border-radius:4px;font-weight:700;font-size:0.85em">D</span></span>
-            </div>
-            <div style="font-size:0.78em;color:#888">Bien'ici · 22/05/2026 08:47</div>
-            <div style="font-size:0.82em;color:#444;margin-top:2px;flex:1">DANS VILLAGE RECHERCHE-PROCHE DE TOUTE COMMODITES ET TRANSPORTS( Accès Paris Gare du Nord en 40 minutes) : Votre Agence Century 21 vous propose cette charmante maison meublée avec goût d'environ 80m2 …</div>
-            <a href="https://www.bienici.com/annonce/century-21-202_3134_3187" target="_blank" style="margin-top:8px;display:inline-block;background:#2563eb;color:#fff;text-decoration:none;padding:7px 14px;border-radius:6px;font-size:0.85em;font-weight:600;text-align:center">Voir l'annonce →</a>
-          </div>
-        </div>
-        <div class="card invalid" style="position:relative;background:#fff;border-radius:10px;box-shadow:0 2px 12px rgba(0,0,0,0.09);overflow:hidden;display:flex;flex-direction:column">
-          <div style="position:absolute;top:0;left:0;right:0;background:rgba(0,0,0,0.55);color:#fff;font-size:0.75em;padding:3px 8px;border-radius:8px 8px 0 0">⚠️ Hors critères</div><img src="https://file.bienici.com/photo/century-21-202_3725_1109_images.century21.fr_202_3725_c21_202_3725_1109_1_A32181A2-79D6-4111-800E-A55EA8FE657F.jpg" style="width:100%;height:150px;object-fit:cover;border-radius:8px 8px 0 0;display:block" onerror="this.style.display='none'">
-          <div style="padding:14px;flex:1;display:flex;flex-direction:column;gap:6px">
-            <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px">
-              <span style="font-weight:700;font-size:0.95em;color:#1a2340;line-height:1.3"></span>
-              <span style="min-width:38px;text-align:center;background:#27ae60;color:#fff;border-radius:20px;padding:2px 9px;font-weight:700;font-size:0.85em">9/10</span>
-            </div>
-            <div style="display:flex;flex-wrap:wrap;gap:6px;font-size:0.82em;color:#555">
-              <span>💰 <b>990€</b></span>
-              <span>📐 83.73m²</span>
-              <span>🚪 4 pièces</span>
-              <span>📍 Valsonne</span>
-              <span>⚡ DPE <span style="background:#52b241;color:#fff;padding:2px 8px;border-radius:4px;font-weight:700;font-size:0.85em">B</span></span>
-            </div>
-            <div style="font-size:0.78em;color:#888">Bien'ici · 22/05/2026 08:47</div>
-            <div style="font-size:0.82em;color:#444;margin-top:2px;flex:1">- VALSONNE - <br>Venez découvrir cette superbe maison neuve idéalement située dans ce beau village dynamique de VALSONNE.<br>Elle comprend une pièce de vie avec cuisine aménagée et entièrement équipée…</div>
-            <a href="https://www.bienici.com/annonce/century-21-202_3725_1109" target="_blank" style="margin-top:8px;display:inline-block;background:#2563eb;color:#fff;text-decoration:none;padding:7px 14px;border-radius:6px;font-size:0.85em;font-weight:600;text-align:center">Voir l'annonce →</a>
-          </div>
-        </div>
-        <div class="card invalid" style="position:relative;background:#fff;border-radius:10px;box-shadow:0 2px 12px rgba(0,0,0,0.09);overflow:hidden;display:flex;flex-direction:column">
-          <div style="position:absolute;top:0;left:0;right:0;background:rgba(0,0,0,0.55);color:#fff;font-size:0.75em;padding:3px 8px;border-radius:8px 8px 0 0">⚠️ Hors critères</div><img src="https://file.bienici.com/photo/century-21-202_3176_5720_images.century21.fr_202_3176_c21_202_3176_5720_1_D4327998-A357-48FB-8863-1859DFA92C31.jpg" style="width:100%;height:150px;object-fit:cover;border-radius:8px 8px 0 0;display:block" onerror="this.style.display='none'">
-          <div style="padding:14px;flex:1;display:flex;flex-direction:column;gap:6px">
-            <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px">
-              <span style="font-weight:700;font-size:0.95em;color:#1a2340;line-height:1.3"></span>
-              <span style="min-width:38px;text-align:center;background:#27ae60;color:#fff;border-radius:20px;padding:2px 9px;font-weight:700;font-size:0.85em">8/10</span>
-            </div>
-            <div style="display:flex;flex-wrap:wrap;gap:6px;font-size:0.82em;color:#555">
-              <span>💰 <b>960€</b></span>
-              <span>📐 75.56m²</span>
-              <span>🚪 4 pièces</span>
-              <span>📍 Narbonne</span>
-              <span>⚡ DPE <span style="background:#a6d96a;color:#fff;padding:2px 8px;border-radius:4px;font-weight:700;font-size:0.85em">C</span></span>
-            </div>
-            <div style="font-size:0.78em;color:#888">Bien'ici · 22/05/2026 08:47</div>
-            <div style="font-size:0.82em;color:#444;margin-top:2px;flex:1">Narbonne<br>Emplacement idéal, quartier calme et résidentiel, proximité gare, transports et commerces.<br>Maison de ville de type 4 entièrement rénovée avec goût, traversante, avec climatisation réver…</div>
-            <a href="https://www.bienici.com/annonce/century-21-202_3176_5720" target="_blank" style="margin-top:8px;display:inline-block;background:#2563eb;color:#fff;text-decoration:none;padding:7px 14px;border-radius:6px;font-size:0.85em;font-weight:600;text-align:center">Voir l'annonce →</a>
-          </div>
-        </div>
-        <div class="card invalid" style="position:relative;background:#fff;border-radius:10px;box-shadow:0 2px 12px rgba(0,0,0,0.09);overflow:hidden;display:flex;flex-direction:column">
-          <div style="position:absolute;top:0;left:0;right:0;background:rgba(0,0,0,0.55);color:#fff;font-size:0.75em;padding:3px 8px;border-radius:8px 8px 0 0">⚠️ Hors critères</div><img src="https://file.bienici.com/photo/century-21-202_3117_9329_images.century21.fr_202_3117_c21_202_3117_9329_1_657AD6D0-D556-4807-8D24-B5E174906E14.jpg" style="width:100%;height:150px;object-fit:cover;border-radius:8px 8px 0 0;display:block" onerror="this.style.display='none'">
-          <div style="padding:14px;flex:1;display:flex;flex-direction:column;gap:6px">
-            <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px">
-              <span style="font-weight:700;font-size:0.95em;color:#1a2340;line-height:1.3"></span>
-              <span style="min-width:38px;text-align:center;background:#e74c3c;color:#fff;border-radius:20px;padding:2px 9px;font-weight:700;font-size:0.85em">3/10</span>
-            </div>
-            <div style="display:flex;flex-wrap:wrap;gap:6px;font-size:0.82em;color:#555">
-              <span>💰 <b>959.85€</b></span>
-              <span>📐 83m²</span>
-              <span>🚪 4 pièces</span>
-              <span>📍 Orléans</span>
-              <span>⚡ DPE <span style="background:#fdae61;color:#333;padding:2px 8px;border-radius:4px;font-weight:700;font-size:0.85em">E</span></span>
-            </div>
-            <div style="font-size:0.78em;color:#888">Bien'ici · 22/05/2026 08:47</div>
-            <div style="font-size:0.82em;color:#444;margin-top:2px;flex:1">L'agence CENTURY 21 Premium a le plaisir de vous présenter à la location sur Orléans Est quartier Saint Marc cette maison meublée d'une surface de 86 m² !<br>Idéalement située proche des écoles, des c…</div>
-            <a href="https://www.bienici.com/annonce/century-21-202_3117_9329" target="_blank" style="margin-top:8px;display:inline-block;background:#2563eb;color:#fff;text-decoration:none;padding:7px 14px;border-radius:6px;font-size:0.85em;font-weight:600;text-align:center">Voir l'annonce →</a>
-          </div>
-        </div>
-        <div class="card invalid" style="position:relative;background:#fff;border-radius:10px;box-shadow:0 2px 12px rgba(0,0,0,0.09);overflow:hidden;display:flex;flex-direction:column">
-          <div style="position:absolute;top:0;left:0;right:0;background:rgba(0,0,0,0.55);color:#fff;font-size:0.75em;padding:3px 8px;border-radius:8px 8px 0 0">⚠️ Hors critères</div><img src="https://file.bienici.com/photo/century-21-202_780_30642_images.century21.fr_202_780_c21_202_780_30642_1_EAA6BFBB-D077-42FE-9F83-5B53455DE3A5.jpg" style="width:100%;height:150px;object-fit:cover;border-radius:8px 8px 0 0;display:block" onerror="this.style.display='none'">
-          <div style="padding:14px;flex:1;display:flex;flex-direction:column;gap:6px">
-            <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px">
-              <span style="font-weight:700;font-size:0.95em;color:#1a2340;line-height:1.3"></span>
-              <span style="min-width:38px;text-align:center;background:#f39c12;color:#fff;border-radius:20px;padding:2px 9px;font-weight:700;font-size:0.85em">6/10</span>
-            </div>
-            <div style="display:flex;flex-wrap:wrap;gap:6px;font-size:0.82em;color:#555">
-              <span>💰 <b>900€</b></span>
-              <span>📐 85m²</span>
-              <span>🚪 4 pièces</span>
-              <span>📍 Étupes</span>
-              <span>⚡ DPE <span style="background:#ffffbf;color:#333;padding:2px 8px;border-radius:4px;font-weight:700;font-size:0.85em">D</span></span>
-            </div>
-            <div style="font-size:0.78em;color:#888">Bien'ici · 22/05/2026 08:47</div>
-            <div style="font-size:0.82em;color:#444;margin-top:2px;flex:1">Century 21 Agence de la Gare vous propose à ETUPES, sur les hauteurs, à proximité des axes autoroutiers, une maison individuelle de plain pied comprenant une entrée, une pièce de vie lumineuse avec cu…</div>
-            <a href="https://www.bienici.com/annonce/century-21-202_780_30642" target="_blank" style="margin-top:8px;display:inline-block;background:#2563eb;color:#fff;text-decoration:none;padding:7px 14px;border-radius:6px;font-size:0.85em;font-weight:600;text-align:center">Voir l'annonce →</a>
-          </div>
-        </div>
-        <div class="card invalid" style="position:relative;background:#fff;border-radius:10px;box-shadow:0 2px 12px rgba(0,0,0,0.09);overflow:hidden;display:flex;flex-direction:column">
-          <div style="position:absolute;top:0;left:0;right:0;background:rgba(0,0,0,0.55);color:#fff;font-size:0.75em;padding:3px 8px;border-radius:8px 8px 0 0">⚠️ Hors critères</div><img src="https://file.bienici.com/photo/century-21-202_2544_24024_images.century21.fr_202_2544_c21_202_2544_24024_1_82D066B8-396B-4FD4-85B8-D56C36A79D32.jpg" style="width:100%;height:150px;object-fit:cover;border-radius:8px 8px 0 0;display:block" onerror="this.style.display='none'">
-          <div style="padding:14px;flex:1;display:flex;flex-direction:column;gap:6px">
-            <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px">
-              <span style="font-weight:700;font-size:0.95em;color:#1a2340;line-height:1.3"></span>
-              <span style="min-width:38px;text-align:center;background:#27ae60;color:#fff;border-radius:20px;padding:2px 9px;font-weight:700;font-size:0.85em">8/10</span>
-            </div>
-            <div style="display:flex;flex-wrap:wrap;gap:6px;font-size:0.82em;color:#555">
-              <span>💰 <b>850€</b></span>
-              <span>📐 127.53m²</span>
-              <span>🚪 6 pièces</span>
-              <span>📍 Bains-sur-Oust</span>
-              <span>⚡ DPE <span style="background:#fdae61;color:#333;padding:2px 8px;border-radius:4px;font-weight:700;font-size:0.85em">E</span></span>
-            </div>
-            <div style="font-size:0.78em;color:#888">Bien'ici · 22/05/2026 08:47</div>
-            <div style="font-size:0.82em;color:#444;margin-top:2px;flex:1">35600 - BAINS SUR OUST <br>Maison de bourg, proche de toutes commodités offrant : hall d'entrée, cuisine indépendante, salon-séjour, chaufferie, wc. <br>A l'étage : 4 chambres, salle de bains, wc. Gre…</div>
-            <a href="https://www.bienici.com/annonce/century-21-202_2544_24024" target="_blank" style="margin-top:8px;display:inline-block;background:#2563eb;color:#fff;text-decoration:none;padding:7px 14px;border-radius:6px;font-size:0.85em;font-weight:600;text-align:center">Voir l'annonce →</a>
-          </div>
-        </div>
-        <div class="card invalid" style="position:relative;background:#fff;border-radius:10px;box-shadow:0 2px 12px rgba(0,0,0,0.09);overflow:hidden;display:flex;flex-direction:column">
-          <div style="position:absolute;top:0;left:0;right:0;background:rgba(0,0,0,0.55);color:#fff;font-size:0.75em;padding:3px 8px;border-radius:8px 8px 0 0">⚠️ Hors critères</div><img src="https://file.bienici.com/photo/century-21-202_3117_9331_images.century21.fr_202_3117_c21_202_3117_9331_1_1C79B632-7341-4D83-AC22-39F29CACF032.jpg" style="width:100%;height:150px;object-fit:cover;border-radius:8px 8px 0 0;display:block" onerror="this.style.display='none'">
-          <div style="padding:14px;flex:1;display:flex;flex-direction:column;gap:6px">
-            <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px">
-              <span style="font-weight:700;font-size:0.95em;color:#1a2340;line-height:1.3"></span>
-              <span style="min-width:38px;text-align:center;background:#27ae60;color:#fff;border-radius:20px;padding:2px 9px;font-weight:700;font-size:0.85em">8/10</span>
-            </div>
-            <div style="display:flex;flex-wrap:wrap;gap:6px;font-size:0.82em;color:#555">
-              <span>💰 <b>835€</b></span>
-              <span>📐 92.41m²</span>
-              <span>🚪 4 pièces</span>
-              <span>📍 Orléans</span>
-              <span>⚡ DPE <span style="background:#ffffbf;color:#333;padding:2px 8px;border-radius:4px;font-weight:700;font-size:0.85em">D</span></span>
-            </div>
-            <div style="font-size:0.78em;color:#888">Bien'ici · 22/05/2026 08:47</div>
-            <div style="font-size:0.82em;color:#444;margin-top:2px;flex:1">L'agence CENTURY 21 Premium a le plaisir de vous présenter cet appartement de 4 pièces en hypercentre à Orléans, proche de la rue de la République. Vous découvrirez une entrée accueillante, un séjour …</div>
-            <a href="https://www.bienici.com/annonce/century-21-202_3117_9331" target="_blank" style="margin-top:8px;display:inline-block;background:#2563eb;color:#fff;text-decoration:none;padding:7px 14px;border-radius:6px;font-size:0.85em;font-weight:600;text-align:center">Voir l'annonce →</a>
-          </div>
-        </div>
-        <div class="card invalid" style="position:relative;background:#fff;border-radius:10px;box-shadow:0 2px 12px rgba(0,0,0,0.09);overflow:hidden;display:flex;flex-direction:column">
-          <div style="position:absolute;top:0;left:0;right:0;background:rgba(0,0,0,0.55);color:#fff;font-size:0.75em;padding:3px 8px;border-radius:8px 8px 0 0">⚠️ Hors critères</div><img src="https://file.bienici.com/photo/century-21-202_3244_6701_images.century21.fr_202_3244_c21_202_3244_6701_1_53712302-61D1-4374-BB9F-F6F172609B46.jpg" style="width:100%;height:150px;object-fit:cover;border-radius:8px 8px 0 0;display:block" onerror="this.style.display='none'">
-          <div style="padding:14px;flex:1;display:flex;flex-direction:column;gap:6px">
-            <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px">
-              <span style="font-weight:700;font-size:0.95em;color:#1a2340;line-height:1.3"></span>
-              <span style="min-width:38px;text-align:center;background:#27ae60;color:#fff;border-radius:20px;padding:2px 9px;font-weight:700;font-size:0.85em">8/10</span>
-            </div>
-            <div style="display:flex;flex-wrap:wrap;gap:6px;font-size:0.82em;color:#555">
-              <span>💰 <b>800€</b></span>
-              <span>📐 97.92m²</span>
-              <span>🚪 5 pièces</span>
-              <span>📍 Belleville</span>
-              <span>⚡ DPE <span style="background:#ffffbf;color:#333;padding:2px 8px;border-radius:4px;font-weight:700;font-size:0.85em">D</span></span>
-            </div>
-            <div style="font-size:0.78em;color:#888">Bien'ici · 22/05/2026 08:47</div>
-            <div style="font-size:0.82em;color:#444;margin-top:2px;flex:1">Venez découvrir ce T4 récemment rénové situé au deuxième étage sans ascenseur d'une copropriété sécurisée. Ce appartement dispose d'un grand séjour, d'une cuisine indépendante, d'une salle de bains ai…</div>
-            <a href="https://www.bienici.com/annonce/century-21-202_3244_6701" target="_blank" style="margin-top:8px;display:inline-block;background:#2563eb;color:#fff;text-decoration:none;padding:7px 14px;border-radius:6px;font-size:0.85em;font-weight:600;text-align:center">Voir l'annonce →</a>
-          </div>
-        </div>
-        <div class="card invalid" style="position:relative;background:#fff;border-radius:10px;box-shadow:0 2px 12px rgba(0,0,0,0.09);overflow:hidden;display:flex;flex-direction:column">
-          <div style="position:absolute;top:0;left:0;right:0;background:rgba(0,0,0,0.55);color:#fff;font-size:0.75em;padding:3px 8px;border-radius:8px 8px 0 0">⚠️ Hors critères</div><img src="https://file.bienici.com/photo/ag420225-531134906_photos.ubiflow.net_420225_531134906_photos_1.jpg_INSOON_EB_5512801818_20260522023721" style="width:100%;height:150px;object-fit:cover;border-radius:8px 8px 0 0;display:block" onerror="this.style.display='none'">
-          <div style="padding:14px;flex:1;display:flex;flex-direction:column;gap:6px">
-            <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px">
-              <span style="font-weight:700;font-size:0.95em;color:#1a2340;line-height:1.3">Maison</span>
-              <span style="min-width:38px;text-align:center;background:#27ae60;color:#fff;border-radius:20px;padding:2px 9px;font-weight:700;font-size:0.85em">8/10</span>
-            </div>
-            <div style="display:flex;flex-wrap:wrap;gap:6px;font-size:0.82em;color:#555">
-              <span>💰 <b>996€</b></span>
-              <span>📐 112m²</span>
-              <span>🚪 4 pièces</span>
-              <span>📍 Montbrison</span>
-              <span>⚡ DPE <span style="background:#a6d96a;color:#fff;padding:2px 8px;border-radius:4px;font-weight:700;font-size:0.85em">C</span></span>
-            </div>
-            <div style="font-size:0.78em;color:#888">Bien'ici · 22/05/2026 08:47</div>
-            <div style="font-size:0.82em;color:#444;margin-top:2px;flex:1">MONTBRISON MAISON A LOUER - Montbrison, maison récente de 112.3m², située chemin des Grands Garets, offrant une cuisine équipée avec plaque de cuisson et hotte, un séjour avec mezzanine, trois chambre…</div>
-            <a href="https://www.bienici.com/annonce/ag420225-531134906" target="_blank" style="margin-top:8px;display:inline-block;background:#2563eb;color:#fff;text-decoration:none;padding:7px 14px;border-radius:6px;font-size:0.85em;font-weight:600;text-align:center">Voir l'annonce →</a>
-          </div>
-        </div>
-        <div class="card invalid" style="position:relative;background:#fff;border-radius:10px;box-shadow:0 2px 12px rgba(0,0,0,0.09);overflow:hidden;display:flex;flex-direction:column">
-          <div style="position:absolute;top:0;left:0;right:0;background:rgba(0,0,0,0.55);color:#fff;font-size:0.75em;padding:3px 8px;border-radius:8px 8px 0 0">⚠️ Hors critères</div><img src="https://file.bienici.com/photo/iad-france-925891_images.playiad.com_property_broadcast_2026_05_22_019e4c910187e4dcba27b2e566be039d.jpg" style="width:100%;height:150px;object-fit:cover;border-radius:8px 8px 0 0;display:block" onerror="this.style.display='none'">
-          <div style="padding:14px;flex:1;display:flex;flex-direction:column;gap:6px">
-            <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px">
-              <span style="font-weight:700;font-size:0.95em;color:#1a2340;line-height:1.3">Location Appartement 4 pièces</span>
-              <span style="min-width:38px;text-align:center;background:#e74c3c;color:#fff;border-radius:20px;padding:2px 9px;font-weight:700;font-size:0.85em">4/10</span>
-            </div>
-            <div style="display:flex;flex-wrap:wrap;gap:6px;font-size:0.82em;color:#555">
-              <span>💰 <b>1150€</b></span>
-              <span>📐 89m²</span>
-              <span>🚪 4 pièces</span>
-              <span>📍 Lambersart</span>
-              <span>⚡ DPE <span style="background:#fdae61;color:#333;padding:2px 8px;border-radius:4px;font-weight:700;font-size:0.85em">E</span></span>
-            </div>
-            <div style="font-size:0.78em;color:#888">Bien'ici · 22/05/2026 08:47</div>
-            <div style="font-size:0.82em;color:#444;margin-top:2px;flex:1">iad France - Sandra Del Magno vous propose: Appartement T4 Lumineux avec Garage à Lambersart en plein cOEur du canon d’or, 263 RUE DE LILLE. <br>Découvrez ce charmant appartement situé au cOEur de Lam…</div>
-            <a href="https://www.bienici.com/annonce/iad-france-925891" target="_blank" style="margin-top:8px;display:inline-block;background:#2563eb;color:#fff;text-decoration:none;padding:7px 14px;border-radius:6px;font-size:0.85em;font-weight:600;text-align:center">Voir l'annonce →</a>
-          </div>
-        </div>
-        <div class="card invalid" style="position:relative;background:#fff;border-radius:10px;box-shadow:0 2px 12px rgba(0,0,0,0.09);overflow:hidden;display:flex;flex-direction:column">
-          <div style="position:absolute;top:0;left:0;right:0;background:rgba(0,0,0,0.55);color:#fff;font-size:0.75em;padding:3px 8px;border-radius:8px 8px 0 0">⚠️ Hors critères</div><img src="https://file.bienici.com/photo/ag711048-531149867_photos.ubiflow.net_711048_531149867_photos_1.jpg_INSOON_EB_5512801818_20260522052443" style="width:100%;height:150px;object-fit:cover;border-radius:8px 8px 0 0;display:block" onerror="this.style.display='none'">
-          <div style="padding:14px;flex:1;display:flex;flex-direction:column;gap:6px">
-            <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px">
-              <span style="font-weight:700;font-size:0.95em;color:#1a2340;line-height:1.3">T5 au 2ème étage avec balcon - centre-ville</span>
-              <span style="min-width:38px;text-align:center;background:#27ae60;color:#fff;border-radius:20px;padding:2px 9px;font-weight:700;font-size:0.85em">9/10</span>
-            </div>
-            <div style="display:flex;flex-wrap:wrap;gap:6px;font-size:0.82em;color:#555">
-              <span>💰 <b>890€</b></span>
-              <span>📐 120m²</span>
-              <span>🚪 5 pièces</span>
-              <span>📍 Chalon-sur-Saône</span>
-              <span>⚡ DPE <span style="background:#d7191c;color:#fff;padding:2px 8px;border-radius:4px;font-weight:700;font-size:0.85em">F</span></span>
-            </div>
-            <div style="font-size:0.78em;color:#888">Bien'ici · 22/05/2026 08:47</div>
-            <div style="font-size:0.82em;color:#444;margin-top:2px;flex:1">Situé au 12 rue Emiland Gauthey, découvrez ce bel appartement d'environ 120 m², au 2? étage d'une copropriété de standing au charme bourgeois.
+<div class="filters"><button class="active" onclick="filtrer('tous',this)">Toutes (30)</button><button onclick="filtrer('valides',this)">✅ Valides (0)</button><button onclick="filtrer('top',this)">⭐ Score ≥ 7</button></div>
+<div class="grid" id="grid"><div class="card invalid" style="position:relative;background:#fff;border-radius:10px;box-shadow:0 2px 12px rgba(0,0,0,.09);overflow:hidden;display:flex;flex-direction:column">
+<div style="position:absolute;top:0;left:0;right:0;background:rgba(0,0,0,.55);color:#fff;font-size:.75em;padding:3px 8px;border-radius:8px 8px 0 0">⚠️ Hors critères</div><img src="https://file.bienici.com/photo/ics-apa_LAVAL_loc-GES02820010-381_box.ics.fr_apa_LAVAL_juk_location_photo_image00002-2218087151937213528.jpg" style="width:100%;height:150px;object-fit:cover;border-radius:8px 8px 0 0;display:block" onerror="this.style.display='none'"><div style="padding:14px;flex:1;display:flex;flex-direction:column;gap:6px">
+<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px"><span style="font-weight:700;font-size:.95em;color:#1a2340;line-height:1.3"></span><span style="min-width:38px;text-align:center;background:#f39c12;color:#fff;border-radius:20px;padding:2px 9px;font-weight:700;font-size:.85em">7/10</span></div>
+<div style="display:flex;flex-wrap:wrap;gap:6px;font-size:.82em;color:#555"><span>💰 <b>992€</b></span><span>📐 115.49m²</span><span>🚪 5 pièces</span><span>📍 Laval</span><span>⚡ DPE <span style="background:#ffffbf;color:#333;padding:2px 8px;border-radius:4px;font-weight:700;font-size:.85em">D</span></span></div>
+<div style="font-size:.78em;color:#888">Bien'ici · 22/05/2026 08:55</div>
+<div style="font-size:.82em;color:#444;margin-top:2px;flex:1">Centre ville de Laval, T5 offrant une entrée avec placard sur salon, une cuisine aménagée et équipée (lave-vaisselle), un séjour et un wc.
+Au 1er étage, un palier, un wc, une salle de bains, 2 chambres et un bureau avec …</div>
+<a href="https://www.bienici.com/annonce/ics-apa_LAVAL_loc-GES02820010-381" target="_blank" style="margin-top:8px;display:inline-block;background:#2563eb;color:#fff;text-decoration:none;padding:7px 14px;border-radius:6px;font-size:.85em;font-weight:600;text-align:center">Voir l'annonce →</a>
+</div></div><div class="card invalid" style="position:relative;background:#fff;border-radius:10px;box-shadow:0 2px 12px rgba(0,0,0,.09);overflow:hidden;display:flex;flex-direction:column">
+<div style="position:absolute;top:0;left:0;right:0;background:rgba(0,0,0,.55);color:#fff;font-size:.75em;padding:3px 8px;border-radius:8px 8px 0 0">⚠️ Hors critères</div><img src="https://file.bienici.com/photo/ics-dom_DOMIANS_loc-LMAI39_box.ics.fr_dom_DOMIANS_san_location_photo_WhatsApp_Image_2026-05-19_at_10_10_17-1409297848862041351.jpg" style="width:100%;height:150px;object-fit:cover;border-radius:8px 8px 0 0;display:block" onerror="this.style.display='none'"><div style="padding:14px;flex:1;display:flex;flex-direction:column;gap:6px">
+<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px"><span style="font-weight:700;font-size:.95em;color:#1a2340;line-height:1.3"></span><span style="min-width:38px;text-align:center;background:#e74c3c;color:#fff;border-radius:20px;padding:2px 9px;font-weight:700;font-size:.85em">5/10</span></div>
+<div style="display:flex;flex-wrap:wrap;gap:6px;font-size:.82em;color:#555"><span>💰 <b>1300€</b></span><span>📐 100m²</span><span>🚪 4 pièces</span><span>📍 Pia</span><span>⚡ DPE <span style="background:#ccc;color:#333;padding:2px 8px;border-radius:4px;font-weight:700;font-size:.85em">VI</span></span></div>
+<div style="font-size:.78em;color:#888">Bien'ici · 22/05/2026 08:55</div>
+<div style="font-size:.82em;color:#444;margin-top:2px;flex:1">Villa T4 R+1 neuve de 100 m², climatisée avec terrasse et jardin dans un lotissement calme de la commune de Pia - À saisir, produit rare !
+Agréable villa T4 de 100 m² sur deux niveaux, située dans un lotissement calme. 
+…</div>
+<a href="https://www.bienici.com/annonce/ics-dom_DOMIANS_loc-LMAI39" target="_blank" style="margin-top:8px;display:inline-block;background:#2563eb;color:#fff;text-decoration:none;padding:7px 14px;border-radius:6px;font-size:.85em;font-weight:600;text-align:center">Voir l'annonce →</a>
+</div></div><div class="card invalid" style="position:relative;background:#fff;border-radius:10px;box-shadow:0 2px 12px rgba(0,0,0,.09);overflow:hidden;display:flex;flex-direction:column">
+<div style="position:absolute;top:0;left:0;right:0;background:rgba(0,0,0,.55);color:#fff;font-size:.75em;padding:3px 8px;border-radius:8px 8px 0 0">⚠️ Hors critères</div><img src="https://file.bienici.com/photo/century-21-202_3784_564_images.century21.fr_202_3784_c21_202_3784_564_1_751D9C21-4CE1-4398-9DBE-B93CD71BC600.jpg" style="width:100%;height:150px;object-fit:cover;border-radius:8px 8px 0 0;display:block" onerror="this.style.display='none'"><div style="padding:14px;flex:1;display:flex;flex-direction:column;gap:6px">
+<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px"><span style="font-weight:700;font-size:.95em;color:#1a2340;line-height:1.3"></span><span style="min-width:38px;text-align:center;background:#f39c12;color:#fff;border-radius:20px;padding:2px 9px;font-weight:700;font-size:.85em">7/10</span></div>
+<div style="display:flex;flex-wrap:wrap;gap:6px;font-size:.82em;color:#555"><span>💰 <b>1250€</b></span><span>📐 103m²</span><span>🚪 4 pièces</span><span>📍 Thézan-lès-Béziers</span><span>⚡ DPE <span style="background:#1a9641;color:#fff;padding:2px 8px;border-radius:4px;font-weight:700;font-size:.85em">A</span></span></div>
+<div style="font-size:.78em;color:#888">Bien'ici · 22/05/2026 08:55</div>
+<div style="font-size:.82em;color:#444;margin-top:2px;flex:1">Maison individuelle en R+1 avec Garage et Jardin - THEZAN LES BEZIERS<br>Dans un lotissement très récent, venez découvrir cette maison composée, au RDC, d'une entrée donnant sur une spacieuse pièce à vivre climatisé avec…</div>
+<a href="https://www.bienici.com/annonce/century-21-202_3784_564" target="_blank" style="margin-top:8px;display:inline-block;background:#2563eb;color:#fff;text-decoration:none;padding:7px 14px;border-radius:6px;font-size:.85em;font-weight:600;text-align:center">Voir l'annonce →</a>
+</div></div><div class="card invalid" style="position:relative;background:#fff;border-radius:10px;box-shadow:0 2px 12px rgba(0,0,0,.09);overflow:hidden;display:flex;flex-direction:column">
+<div style="position:absolute;top:0;left:0;right:0;background:rgba(0,0,0,.55);color:#fff;font-size:.75em;padding:3px 8px;border-radius:8px 8px 0 0">⚠️ Hors critères</div><img src="https://file.bienici.com/photo/century-21-202_416_69950_images.century21.fr_202_416_c21_202_416_69950_1_DEF258F6-6029-4FD4-9A61-06F6006E09DB.jpg" style="width:100%;height:150px;object-fit:cover;border-radius:8px 8px 0 0;display:block" onerror="this.style.display='none'"><div style="padding:14px;flex:1;display:flex;flex-direction:column;gap:6px">
+<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px"><span style="font-weight:700;font-size:.95em;color:#1a2340;line-height:1.3"></span><span style="min-width:38px;text-align:center;background:#e74c3c;color:#fff;border-radius:20px;padding:2px 9px;font-weight:700;font-size:.85em">5/10</span></div>
+<div style="display:flex;flex-wrap:wrap;gap:6px;font-size:.82em;color:#555"><span>💰 <b>1245€</b></span><span>📐 95m²</span><span>🚪 4 pièces</span><span>📍 Saint-Gély-du-Fesc</span><span>⚡ DPE <span style="background:#a6d96a;color:#fff;padding:2px 8px;border-radius:4px;font-weight:700;font-size:.85em">C</span></span></div>
+<div style="font-size:.78em;color:#888">Bien'ici · 22/05/2026 08:55</div>
+<div style="font-size:.82em;color:#444;margin-top:2px;flex:1">Votre agence CENTURY 21 Granié Immobilier vous propose à la location, à Saint-Gély-du-Fesc, à seulement 10 minutes au nord de Montpellier, au sein d'un lotissement sécurisé et fermé avec piscine, une villa avec terrain d…</div>
+<a href="https://www.bienici.com/annonce/century-21-202_416_69950" target="_blank" style="margin-top:8px;display:inline-block;background:#2563eb;color:#fff;text-decoration:none;padding:7px 14px;border-radius:6px;font-size:.85em;font-weight:600;text-align:center">Voir l'annonce →</a>
+</div></div><div class="card invalid" style="position:relative;background:#fff;border-radius:10px;box-shadow:0 2px 12px rgba(0,0,0,.09);overflow:hidden;display:flex;flex-direction:column">
+<div style="position:absolute;top:0;left:0;right:0;background:rgba(0,0,0,.55);color:#fff;font-size:.75em;padding:3px 8px;border-radius:8px 8px 0 0">⚠️ Hors critères</div><img src="https://file.bienici.com/photo/century-21-202_3122_5702_images.century21.fr_202_3122_c21_202_3122_5702_1_C92C21DD-4305-4BCD-99EB-411FBA412239.jpg" style="width:100%;height:150px;object-fit:cover;border-radius:8px 8px 0 0;display:block" onerror="this.style.display='none'"><div style="padding:14px;flex:1;display:flex;flex-direction:column;gap:6px">
+<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px"><span style="font-weight:700;font-size:.95em;color:#1a2340;line-height:1.3"></span><span style="min-width:38px;text-align:center;background:#f39c12;color:#fff;border-radius:20px;padding:2px 9px;font-weight:700;font-size:.85em">6/10</span></div>
+<div style="display:flex;flex-wrap:wrap;gap:6px;font-size:.82em;color:#555"><span>💰 <b>1241.78€</b></span><span>📐 77.95m²</span><span>🚪 4 pièces</span><span>📍 Mantes-la-Jolie</span><span>⚡ DPE <span style="background:#a6d96a;color:#fff;padding:2px 8px;border-radius:4px;font-weight:700;font-size:.85em">C</span></span></div>
+<div style="font-size:.78em;color:#888">Bien'ici · 22/05/2026 08:55</div>
+<div style="font-size:.82em;color:#444;margin-top:2px;flex:1">En plein cœur du centre-ville de Mantes La Jolie, dans la résidence Cours des Dames de standing, à 5 minutes de la gare, proches de toutes commodités, Century 21 La Mantoise vous propose cet appartement de 4 pièces au 1e…</div>
+<a href="https://www.bienici.com/annonce/century-21-202_3122_5702" target="_blank" style="margin-top:8px;display:inline-block;background:#2563eb;color:#fff;text-decoration:none;padding:7px 14px;border-radius:6px;font-size:.85em;font-weight:600;text-align:center">Voir l'annonce →</a>
+</div></div><div class="card invalid" style="position:relative;background:#fff;border-radius:10px;box-shadow:0 2px 12px rgba(0,0,0,.09);overflow:hidden;display:flex;flex-direction:column">
+<div style="position:absolute;top:0;left:0;right:0;background:rgba(0,0,0,.55);color:#fff;font-size:.75em;padding:3px 8px;border-radius:8px 8px 0 0">⚠️ Hors critères</div><img src="https://file.bienici.com/photo/century-21-202_2806_24310_images.century21.fr_202_2806_c21_202_2806_24310_1_43DB6881-BC57-4BC5-AB06-D2CD82D71365.jpg" style="width:100%;height:150px;object-fit:cover;border-radius:8px 8px 0 0;display:block" onerror="this.style.display='none'"><div style="padding:14px;flex:1;display:flex;flex-direction:column;gap:6px">
+<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px"><span style="font-weight:700;font-size:.95em;color:#1a2340;line-height:1.3"></span><span style="min-width:38px;text-align:center;background:#f39c12;color:#fff;border-radius:20px;padding:2px 9px;font-weight:700;font-size:.85em">7/10</span></div>
+<div style="display:flex;flex-wrap:wrap;gap:6px;font-size:.82em;color:#555"><span>💰 <b>1197€</b></span><span>📐 86.51m²</span><span>🚪 4 pièces</span><span>📍 Moret-sur-Loing</span><span>⚡ DPE <span style="background:#ccc;color:#333;padding:2px 8px;border-radius:4px;font-weight:700;font-size:.85em">NS</span></span></div>
+<div style="font-size:.78em;color:#888">Bien'ici · 22/05/2026 08:55</div>
+<div style="font-size:.82em;color:#444;margin-top:2px;flex:1">Au sein du ' Logis Saint Jacques', plein cœur Moret sur Loing!<br>Appartement de type F4, au troisième étage avec ascenseur,  entièrement rénové comprenant :<br>Une cuisine aménagée et équipée (réfrigérateur, four, plaqu…</div>
+<a href="https://www.bienici.com/annonce/century-21-202_2806_24310" target="_blank" style="margin-top:8px;display:inline-block;background:#2563eb;color:#fff;text-decoration:none;padding:7px 14px;border-radius:6px;font-size:.85em;font-weight:600;text-align:center">Voir l'annonce →</a>
+</div></div><div class="card invalid" style="position:relative;background:#fff;border-radius:10px;box-shadow:0 2px 12px rgba(0,0,0,.09);overflow:hidden;display:flex;flex-direction:column">
+<div style="position:absolute;top:0;left:0;right:0;background:rgba(0,0,0,.55);color:#fff;font-size:.75em;padding:3px 8px;border-radius:8px 8px 0 0">⚠️ Hors critères</div><img src="https://file.bienici.com/photo/century-21-202_416_69992_images.century21.fr_202_416_c21_202_416_69992_1_2E2BFE4C-8E8F-4BDF-8763-ABF02BE28BC9.jpg" style="width:100%;height:150px;object-fit:cover;border-radius:8px 8px 0 0;display:block" onerror="this.style.display='none'"><div style="padding:14px;flex:1;display:flex;flex-direction:column;gap:6px">
+<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px"><span style="font-weight:700;font-size:.95em;color:#1a2340;line-height:1.3"></span><span style="min-width:38px;text-align:center;background:#e74c3c;color:#fff;border-radius:20px;padding:2px 9px;font-weight:700;font-size:.85em">4/10</span></div>
+<div style="display:flex;flex-wrap:wrap;gap:6px;font-size:.82em;color:#555"><span>💰 <b>1190€</b></span><span>📐 71m²</span><span>🚪 4 pièces</span><span>📍 Montpellier</span><span>⚡ DPE <span style="background:#ffffbf;color:#333;padding:2px 8px;border-radius:4px;font-weight:700;font-size:.85em">D</span></span></div>
+<div style="font-size:.78em;color:#888">Bien'ici · 22/05/2026 08:55</div>
+<div style="font-size:.82em;color:#444;margin-top:2px;flex:1">Rare à la location, cette maison de ville de plus de 71 m² habitables, entièrement refaite à neuf, vous séduira par son charme et ses prestations modernes, en plein cœur de Montpellier. Dès l'entrée, vous découvrez une a…</div>
+<a href="https://www.bienici.com/annonce/century-21-202_416_69992" target="_blank" style="margin-top:8px;display:inline-block;background:#2563eb;color:#fff;text-decoration:none;padding:7px 14px;border-radius:6px;font-size:.85em;font-weight:600;text-align:center">Voir l'annonce →</a>
+</div></div><div class="card invalid" style="position:relative;background:#fff;border-radius:10px;box-shadow:0 2px 12px rgba(0,0,0,.09);overflow:hidden;display:flex;flex-direction:column">
+<div style="position:absolute;top:0;left:0;right:0;background:rgba(0,0,0,.55);color:#fff;font-size:.75em;padding:3px 8px;border-radius:8px 8px 0 0">⚠️ Hors critères</div><img src="https://file.bienici.com/photo/century-21-202_3250_3396_images.century21.fr_202_3250_c21_202_3250_3396_1_DDB066A0-ED6D-4B53-B8D6-90776CA48E88.jpg" style="width:100%;height:150px;object-fit:cover;border-radius:8px 8px 0 0;display:block" onerror="this.style.display='none'"><div style="padding:14px;flex:1;display:flex;flex-direction:column;gap:6px">
+<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px"><span style="font-weight:700;font-size:.95em;color:#1a2340;line-height:1.3"></span><span style="min-width:38px;text-align:center;background:#e74c3c;color:#fff;border-radius:20px;padding:2px 9px;font-weight:700;font-size:.85em">4/10</span></div>
+<div style="display:flex;flex-wrap:wrap;gap:6px;font-size:.82em;color:#555"><span>💰 <b>1180€</b></span><span>📐 82m²</span><span>🚪 4 pièces</span><span>📍 Romans-sur-Isère</span><span>⚡ DPE <span style="background:#ffffbf;color:#333;padding:2px 8px;border-radius:4px;font-weight:700;font-size:.85em">D</span></span></div>
+<div style="font-size:.78em;color:#888">Bien'ici · 22/05/2026 08:55</div>
+<div style="font-size:.82em;color:#444;margin-top:2px;flex:1">ROMANS - Quartier des Ors très recherché ... <br>Chouette villa d'environ 82m², pièce de vie lumineuse, cuisine équipée (meubles, four, plaque et hotte), 3 chambres, salle d'eau avec wc, garage de 16m², buanderie de 7m²<…</div>
+<a href="https://www.bienici.com/annonce/century-21-202_3250_3396" target="_blank" style="margin-top:8px;display:inline-block;background:#2563eb;color:#fff;text-decoration:none;padding:7px 14px;border-radius:6px;font-size:.85em;font-weight:600;text-align:center">Voir l'annonce →</a>
+</div></div><div class="card invalid" style="position:relative;background:#fff;border-radius:10px;box-shadow:0 2px 12px rgba(0,0,0,.09);overflow:hidden;display:flex;flex-direction:column">
+<div style="position:absolute;top:0;left:0;right:0;background:rgba(0,0,0,.55);color:#fff;font-size:.75em;padding:3px 8px;border-radius:8px 8px 0 0">⚠️ Hors critères</div><img src="https://file.bienici.com/photo/century-21-202_813_26713_images.century21.fr_202_813_c21_202_813_26713_1_E0A3BF8B-9769-40CC-8921-E5B18A81B5B6.jpg" style="width:100%;height:150px;object-fit:cover;border-radius:8px 8px 0 0;display:block" onerror="this.style.display='none'"><div style="padding:14px;flex:1;display:flex;flex-direction:column;gap:6px">
+<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px"><span style="font-weight:700;font-size:.95em;color:#1a2340;line-height:1.3"></span><span style="min-width:38px;text-align:center;background:#f39c12;color:#fff;border-radius:20px;padding:2px 9px;font-weight:700;font-size:.85em">6/10</span></div>
+<div style="display:flex;flex-wrap:wrap;gap:6px;font-size:.82em;color:#555"><span>💰 <b>1160€</b></span><span>📐 114m²</span><span>🚪 6 pièces</span><span>📍 Bressols</span><span>⚡ DPE <span style="background:#ffffbf;color:#333;padding:2px 8px;border-radius:4px;font-weight:700;font-size:.85em">D</span></span></div>
+<div style="font-size:.78em;color:#888">Bien'ici · 22/05/2026 08:55</div>
+<div style="font-size:.82em;color:#444;margin-top:2px;flex:1">LOCATION - A 2 Km centre du village de BRESSOLS : proche crèche, école maternelle, école primaire, Poste, commerces ... <br>Maison d'habitation T5 bis de plain pied, composée d'une salle de séjour ouverte sur une cuisine…</div>
+<a href="https://www.bienici.com/annonce/century-21-202_813_26713" target="_blank" style="margin-top:8px;display:inline-block;background:#2563eb;color:#fff;text-decoration:none;padding:7px 14px;border-radius:6px;font-size:.85em;font-weight:600;text-align:center">Voir l'annonce →</a>
+</div></div><div class="card invalid" style="position:relative;background:#fff;border-radius:10px;box-shadow:0 2px 12px rgba(0,0,0,.09);overflow:hidden;display:flex;flex-direction:column">
+<div style="position:absolute;top:0;left:0;right:0;background:rgba(0,0,0,.55);color:#fff;font-size:.75em;padding:3px 8px;border-radius:8px 8px 0 0">⚠️ Hors critères</div><img src="https://file.bienici.com/photo/century-21-202_2251_11266_images.century21.fr_202_2251_c21_202_2251_11266_1_9C7CDA0A-B623-4051-9A32-0D29878DED2E.jpg" style="width:100%;height:150px;object-fit:cover;border-radius:8px 8px 0 0;display:block" onerror="this.style.display='none'"><div style="padding:14px;flex:1;display:flex;flex-direction:column;gap:6px">
+<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px"><span style="font-weight:700;font-size:.95em;color:#1a2340;line-height:1.3"></span><span style="min-width:38px;text-align:center;background:#f39c12;color:#fff;border-radius:20px;padding:2px 9px;font-weight:700;font-size:.85em">7/10</span></div>
+<div style="display:flex;flex-wrap:wrap;gap:6px;font-size:.82em;color:#555"><span>💰 <b>1026€</b></span><span>📐 67.65m²</span><span>🚪 4 pièces</span><span>📍 Saint-Félix</span><span>⚡ DPE <span style="background:#ffffbf;color:#333;padding:2px 8px;border-radius:4px;font-weight:700;font-size:.85em">D</span></span></div>
+<div style="font-size:.78em;color:#888">Bien'ici · 22/05/2026 08:55</div>
+<div style="font-size:.82em;color:#444;margin-top:2px;flex:1">A 5 minutes de l'entrée d'autoroute d'ALBY SUR CHERAN - Dans une petite copropriété proche de toutes les commodités - Nous vous invitons à venir découvrir ce bel appartement de type T3bis. Vous apprécierez son intérieur …</div>
+<a href="https://www.bienici.com/annonce/century-21-202_2251_11266" target="_blank" style="margin-top:8px;display:inline-block;background:#2563eb;color:#fff;text-decoration:none;padding:7px 14px;border-radius:6px;font-size:.85em;font-weight:600;text-align:center">Voir l'annonce →</a>
+</div></div><div class="card invalid" style="position:relative;background:#fff;border-radius:10px;box-shadow:0 2px 12px rgba(0,0,0,.09);overflow:hidden;display:flex;flex-direction:column">
+<div style="position:absolute;top:0;left:0;right:0;background:rgba(0,0,0,.55);color:#fff;font-size:.75em;padding:3px 8px;border-radius:8px 8px 0 0">⚠️ Hors critères</div><img src="https://file.bienici.com/photo/century-21-202_3134_3187_images.century21.fr_202_3134_c21_202_3134_3187_1_0E0FABB5-AB8B-4AAC-91B5-0960D94B8331.jpg" style="width:100%;height:150px;object-fit:cover;border-radius:8px 8px 0 0;display:block" onerror="this.style.display='none'"><div style="padding:14px;flex:1;display:flex;flex-direction:column;gap:6px">
+<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px"><span style="font-weight:700;font-size:.95em;color:#1a2340;line-height:1.3"></span><span style="min-width:38px;text-align:center;background:#f39c12;color:#fff;border-radius:20px;padding:2px 9px;font-weight:700;font-size:.85em">7/10</span></div>
+<div style="display:flex;flex-wrap:wrap;gap:6px;font-size:.82em;color:#555"><span>💰 <b>990€</b></span><span>📐 63.61m²</span><span>🚪 4 pièces</span><span>📍 Rieux</span><span>⚡ DPE <span style="background:#ffffbf;color:#333;padding:2px 8px;border-radius:4px;font-weight:700;font-size:.85em">D</span></span></div>
+<div style="font-size:.78em;color:#888">Bien'ici · 22/05/2026 08:47</div>
+<div style="font-size:.82em;color:#444;margin-top:2px;flex:1">DANS VILLAGE RECHERCHE-PROCHE DE TOUTE COMMODITES ET TRANSPORTS( Accès Paris Gare du Nord en 40 minutes) : Votre Agence Century 21 vous propose cette charmante maison meublée avec goût d'environ 80m2 au sol. Elle vous of…</div>
+<a href="https://www.bienici.com/annonce/century-21-202_3134_3187" target="_blank" style="margin-top:8px;display:inline-block;background:#2563eb;color:#fff;text-decoration:none;padding:7px 14px;border-radius:6px;font-size:.85em;font-weight:600;text-align:center">Voir l'annonce →</a>
+</div></div><div class="card invalid" style="position:relative;background:#fff;border-radius:10px;box-shadow:0 2px 12px rgba(0,0,0,.09);overflow:hidden;display:flex;flex-direction:column">
+<div style="position:absolute;top:0;left:0;right:0;background:rgba(0,0,0,.55);color:#fff;font-size:.75em;padding:3px 8px;border-radius:8px 8px 0 0">⚠️ Hors critères</div><img src="https://file.bienici.com/photo/century-21-202_3725_1109_images.century21.fr_202_3725_c21_202_3725_1109_1_A32181A2-79D6-4111-800E-A55EA8FE657F.jpg" style="width:100%;height:150px;object-fit:cover;border-radius:8px 8px 0 0;display:block" onerror="this.style.display='none'"><div style="padding:14px;flex:1;display:flex;flex-direction:column;gap:6px">
+<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px"><span style="font-weight:700;font-size:.95em;color:#1a2340;line-height:1.3"></span><span style="min-width:38px;text-align:center;background:#27ae60;color:#fff;border-radius:20px;padding:2px 9px;font-weight:700;font-size:.85em">9/10</span></div>
+<div style="display:flex;flex-wrap:wrap;gap:6px;font-size:.82em;color:#555"><span>💰 <b>990€</b></span><span>📐 83.73m²</span><span>🚪 4 pièces</span><span>📍 Valsonne</span><span>⚡ DPE <span style="background:#52b241;color:#fff;padding:2px 8px;border-radius:4px;font-weight:700;font-size:.85em">B</span></span></div>
+<div style="font-size:.78em;color:#888">Bien'ici · 22/05/2026 08:47</div>
+<div style="font-size:.82em;color:#444;margin-top:2px;flex:1">- VALSONNE - <br>Venez découvrir cette superbe maison neuve idéalement située dans ce beau village dynamique de VALSONNE.<br>Elle comprend une pièce de vie avec cuisine aménagée et entièrement équipée ouverte sur le salo…</div>
+<a href="https://www.bienici.com/annonce/century-21-202_3725_1109" target="_blank" style="margin-top:8px;display:inline-block;background:#2563eb;color:#fff;text-decoration:none;padding:7px 14px;border-radius:6px;font-size:.85em;font-weight:600;text-align:center">Voir l'annonce →</a>
+</div></div><div class="card invalid" style="position:relative;background:#fff;border-radius:10px;box-shadow:0 2px 12px rgba(0,0,0,.09);overflow:hidden;display:flex;flex-direction:column">
+<div style="position:absolute;top:0;left:0;right:0;background:rgba(0,0,0,.55);color:#fff;font-size:.75em;padding:3px 8px;border-radius:8px 8px 0 0">⚠️ Hors critères</div><img src="https://file.bienici.com/photo/century-21-202_3176_5720_images.century21.fr_202_3176_c21_202_3176_5720_1_D4327998-A357-48FB-8863-1859DFA92C31.jpg" style="width:100%;height:150px;object-fit:cover;border-radius:8px 8px 0 0;display:block" onerror="this.style.display='none'"><div style="padding:14px;flex:1;display:flex;flex-direction:column;gap:6px">
+<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px"><span style="font-weight:700;font-size:.95em;color:#1a2340;line-height:1.3"></span><span style="min-width:38px;text-align:center;background:#27ae60;color:#fff;border-radius:20px;padding:2px 9px;font-weight:700;font-size:.85em">8/10</span></div>
+<div style="display:flex;flex-wrap:wrap;gap:6px;font-size:.82em;color:#555"><span>💰 <b>960€</b></span><span>📐 75.56m²</span><span>🚪 4 pièces</span><span>📍 Narbonne</span><span>⚡ DPE <span style="background:#a6d96a;color:#fff;padding:2px 8px;border-radius:4px;font-weight:700;font-size:.85em">C</span></span></div>
+<div style="font-size:.78em;color:#888">Bien'ici · 22/05/2026 08:47</div>
+<div style="font-size:.82em;color:#444;margin-top:2px;flex:1">Narbonne<br>Emplacement idéal, quartier calme et résidentiel, proximité gare, transports et commerces.<br>Maison de ville de type 4 entièrement rénovée avec goût, traversante, avec climatisation réversible.<br>En rez de …</div>
+<a href="https://www.bienici.com/annonce/century-21-202_3176_5720" target="_blank" style="margin-top:8px;display:inline-block;background:#2563eb;color:#fff;text-decoration:none;padding:7px 14px;border-radius:6px;font-size:.85em;font-weight:600;text-align:center">Voir l'annonce →</a>
+</div></div><div class="card invalid" style="position:relative;background:#fff;border-radius:10px;box-shadow:0 2px 12px rgba(0,0,0,.09);overflow:hidden;display:flex;flex-direction:column">
+<div style="position:absolute;top:0;left:0;right:0;background:rgba(0,0,0,.55);color:#fff;font-size:.75em;padding:3px 8px;border-radius:8px 8px 0 0">⚠️ Hors critères</div><img src="https://file.bienici.com/photo/century-21-202_3117_9329_images.century21.fr_202_3117_c21_202_3117_9329_1_657AD6D0-D556-4807-8D24-B5E174906E14.jpg" style="width:100%;height:150px;object-fit:cover;border-radius:8px 8px 0 0;display:block" onerror="this.style.display='none'"><div style="padding:14px;flex:1;display:flex;flex-direction:column;gap:6px">
+<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px"><span style="font-weight:700;font-size:.95em;color:#1a2340;line-height:1.3"></span><span style="min-width:38px;text-align:center;background:#e74c3c;color:#fff;border-radius:20px;padding:2px 9px;font-weight:700;font-size:.85em">3/10</span></div>
+<div style="display:flex;flex-wrap:wrap;gap:6px;font-size:.82em;color:#555"><span>💰 <b>959.85€</b></span><span>📐 83m²</span><span>🚪 4 pièces</span><span>📍 Orléans</span><span>⚡ DPE <span style="background:#fdae61;color:#333;padding:2px 8px;border-radius:4px;font-weight:700;font-size:.85em">E</span></span></div>
+<div style="font-size:.78em;color:#888">Bien'ici · 22/05/2026 08:47</div>
+<div style="font-size:.82em;color:#444;margin-top:2px;flex:1">L'agence CENTURY 21 Premium a le plaisir de vous présenter à la location sur Orléans Est quartier Saint Marc cette maison meublée d'une surface de 86 m² !<br>Idéalement située proche des écoles, des commerces de proximit…</div>
+<a href="https://www.bienici.com/annonce/century-21-202_3117_9329" target="_blank" style="margin-top:8px;display:inline-block;background:#2563eb;color:#fff;text-decoration:none;padding:7px 14px;border-radius:6px;font-size:.85em;font-weight:600;text-align:center">Voir l'annonce →</a>
+</div></div><div class="card invalid" style="position:relative;background:#fff;border-radius:10px;box-shadow:0 2px 12px rgba(0,0,0,.09);overflow:hidden;display:flex;flex-direction:column">
+<div style="position:absolute;top:0;left:0;right:0;background:rgba(0,0,0,.55);color:#fff;font-size:.75em;padding:3px 8px;border-radius:8px 8px 0 0">⚠️ Hors critères</div><img src="https://file.bienici.com/photo/century-21-202_780_30642_images.century21.fr_202_780_c21_202_780_30642_1_EAA6BFBB-D077-42FE-9F83-5B53455DE3A5.jpg" style="width:100%;height:150px;object-fit:cover;border-radius:8px 8px 0 0;display:block" onerror="this.style.display='none'"><div style="padding:14px;flex:1;display:flex;flex-direction:column;gap:6px">
+<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px"><span style="font-weight:700;font-size:.95em;color:#1a2340;line-height:1.3"></span><span style="min-width:38px;text-align:center;background:#f39c12;color:#fff;border-radius:20px;padding:2px 9px;font-weight:700;font-size:.85em">6/10</span></div>
+<div style="display:flex;flex-wrap:wrap;gap:6px;font-size:.82em;color:#555"><span>💰 <b>900€</b></span><span>📐 85m²</span><span>🚪 4 pièces</span><span>📍 Étupes</span><span>⚡ DPE <span style="background:#ffffbf;color:#333;padding:2px 8px;border-radius:4px;font-weight:700;font-size:.85em">D</span></span></div>
+<div style="font-size:.78em;color:#888">Bien'ici · 22/05/2026 08:47</div>
+<div style="font-size:.82em;color:#444;margin-top:2px;flex:1">Century 21 Agence de la Gare vous propose à ETUPES, sur les hauteurs, à proximité des axes autoroutiers, une maison individuelle de plain pied comprenant une entrée, une pièce de vie lumineuse avec cuisine aménagée et éq…</div>
+<a href="https://www.bienici.com/annonce/century-21-202_780_30642" target="_blank" style="margin-top:8px;display:inline-block;background:#2563eb;color:#fff;text-decoration:none;padding:7px 14px;border-radius:6px;font-size:.85em;font-weight:600;text-align:center">Voir l'annonce →</a>
+</div></div><div class="card invalid" style="position:relative;background:#fff;border-radius:10px;box-shadow:0 2px 12px rgba(0,0,0,.09);overflow:hidden;display:flex;flex-direction:column">
+<div style="position:absolute;top:0;left:0;right:0;background:rgba(0,0,0,.55);color:#fff;font-size:.75em;padding:3px 8px;border-radius:8px 8px 0 0">⚠️ Hors critères</div><img src="https://file.bienici.com/photo/century-21-202_2544_24024_images.century21.fr_202_2544_c21_202_2544_24024_1_82D066B8-396B-4FD4-85B8-D56C36A79D32.jpg" style="width:100%;height:150px;object-fit:cover;border-radius:8px 8px 0 0;display:block" onerror="this.style.display='none'"><div style="padding:14px;flex:1;display:flex;flex-direction:column;gap:6px">
+<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px"><span style="font-weight:700;font-size:.95em;color:#1a2340;line-height:1.3"></span><span style="min-width:38px;text-align:center;background:#27ae60;color:#fff;border-radius:20px;padding:2px 9px;font-weight:700;font-size:.85em">8/10</span></div>
+<div style="display:flex;flex-wrap:wrap;gap:6px;font-size:.82em;color:#555"><span>💰 <b>850€</b></span><span>📐 127.53m²</span><span>🚪 6 pièces</span><span>📍 Bains-sur-Oust</span><span>⚡ DPE <span style="background:#fdae61;color:#333;padding:2px 8px;border-radius:4px;font-weight:700;font-size:.85em">E</span></span></div>
+<div style="font-size:.78em;color:#888">Bien'ici · 22/05/2026 08:47</div>
+<div style="font-size:.82em;color:#444;margin-top:2px;flex:1">35600 - BAINS SUR OUST <br>Maison de bourg, proche de toutes commodités offrant : hall d'entrée, cuisine indépendante, salon-séjour, chaufferie, wc. <br>A l'étage : 4 chambres, salle de bains, wc. Grenier.<br>Jardin clos…</div>
+<a href="https://www.bienici.com/annonce/century-21-202_2544_24024" target="_blank" style="margin-top:8px;display:inline-block;background:#2563eb;color:#fff;text-decoration:none;padding:7px 14px;border-radius:6px;font-size:.85em;font-weight:600;text-align:center">Voir l'annonce →</a>
+</div></div><div class="card invalid" style="position:relative;background:#fff;border-radius:10px;box-shadow:0 2px 12px rgba(0,0,0,.09);overflow:hidden;display:flex;flex-direction:column">
+<div style="position:absolute;top:0;left:0;right:0;background:rgba(0,0,0,.55);color:#fff;font-size:.75em;padding:3px 8px;border-radius:8px 8px 0 0">⚠️ Hors critères</div><img src="https://file.bienici.com/photo/century-21-202_3117_9331_images.century21.fr_202_3117_c21_202_3117_9331_1_1C79B632-7341-4D83-AC22-39F29CACF032.jpg" style="width:100%;height:150px;object-fit:cover;border-radius:8px 8px 0 0;display:block" onerror="this.style.display='none'"><div style="padding:14px;flex:1;display:flex;flex-direction:column;gap:6px">
+<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px"><span style="font-weight:700;font-size:.95em;color:#1a2340;line-height:1.3"></span><span style="min-width:38px;text-align:center;background:#27ae60;color:#fff;border-radius:20px;padding:2px 9px;font-weight:700;font-size:.85em">8/10</span></div>
+<div style="display:flex;flex-wrap:wrap;gap:6px;font-size:.82em;color:#555"><span>💰 <b>835€</b></span><span>📐 92.41m²</span><span>🚪 4 pièces</span><span>📍 Orléans</span><span>⚡ DPE <span style="background:#ffffbf;color:#333;padding:2px 8px;border-radius:4px;font-weight:700;font-size:.85em">D</span></span></div>
+<div style="font-size:.78em;color:#888">Bien'ici · 22/05/2026 08:47</div>
+<div style="font-size:.82em;color:#444;margin-top:2px;flex:1">L'agence CENTURY 21 Premium a le plaisir de vous présenter cet appartement de 4 pièces en hypercentre à Orléans, proche de la rue de la République. Vous découvrirez une entrée accueillante, un séjour spacieux, une salle …</div>
+<a href="https://www.bienici.com/annonce/century-21-202_3117_9331" target="_blank" style="margin-top:8px;display:inline-block;background:#2563eb;color:#fff;text-decoration:none;padding:7px 14px;border-radius:6px;font-size:.85em;font-weight:600;text-align:center">Voir l'annonce →</a>
+</div></div><div class="card invalid" style="position:relative;background:#fff;border-radius:10px;box-shadow:0 2px 12px rgba(0,0,0,.09);overflow:hidden;display:flex;flex-direction:column">
+<div style="position:absolute;top:0;left:0;right:0;background:rgba(0,0,0,.55);color:#fff;font-size:.75em;padding:3px 8px;border-radius:8px 8px 0 0">⚠️ Hors critères</div><img src="https://file.bienici.com/photo/century-21-202_3244_6701_images.century21.fr_202_3244_c21_202_3244_6701_1_53712302-61D1-4374-BB9F-F6F172609B46.jpg" style="width:100%;height:150px;object-fit:cover;border-radius:8px 8px 0 0;display:block" onerror="this.style.display='none'"><div style="padding:14px;flex:1;display:flex;flex-direction:column;gap:6px">
+<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px"><span style="font-weight:700;font-size:.95em;color:#1a2340;line-height:1.3"></span><span style="min-width:38px;text-align:center;background:#27ae60;color:#fff;border-radius:20px;padding:2px 9px;font-weight:700;font-size:.85em">8/10</span></div>
+<div style="display:flex;flex-wrap:wrap;gap:6px;font-size:.82em;color:#555"><span>💰 <b>800€</b></span><span>📐 97.92m²</span><span>🚪 5 pièces</span><span>📍 Belleville</span><span>⚡ DPE <span style="background:#ffffbf;color:#333;padding:2px 8px;border-radius:4px;font-weight:700;font-size:.85em">D</span></span></div>
+<div style="font-size:.78em;color:#888">Bien'ici · 22/05/2026 08:47</div>
+<div style="font-size:.82em;color:#444;margin-top:2px;flex:1">Venez découvrir ce T4 récemment rénové situé au deuxième étage sans ascenseur d'une copropriété sécurisée. Ce appartement dispose d'un grand séjour, d'une cuisine indépendante, d'une salle de bains ainsi que de trois cha…</div>
+<a href="https://www.bienici.com/annonce/century-21-202_3244_6701" target="_blank" style="margin-top:8px;display:inline-block;background:#2563eb;color:#fff;text-decoration:none;padding:7px 14px;border-radius:6px;font-size:.85em;font-weight:600;text-align:center">Voir l'annonce →</a>
+</div></div><div class="card invalid" style="position:relative;background:#fff;border-radius:10px;box-shadow:0 2px 12px rgba(0,0,0,.09);overflow:hidden;display:flex;flex-direction:column">
+<div style="position:absolute;top:0;left:0;right:0;background:rgba(0,0,0,.55);color:#fff;font-size:.75em;padding:3px 8px;border-radius:8px 8px 0 0">⚠️ Hors critères</div><img src="https://file.bienici.com/photo/ag420225-531134906_photos.ubiflow.net_420225_531134906_photos_1.jpg_INSOON_EB_5512801818_20260522023721" style="width:100%;height:150px;object-fit:cover;border-radius:8px 8px 0 0;display:block" onerror="this.style.display='none'"><div style="padding:14px;flex:1;display:flex;flex-direction:column;gap:6px">
+<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px"><span style="font-weight:700;font-size:.95em;color:#1a2340;line-height:1.3">Maison</span><span style="min-width:38px;text-align:center;background:#27ae60;color:#fff;border-radius:20px;padding:2px 9px;font-weight:700;font-size:.85em">8/10</span></div>
+<div style="display:flex;flex-wrap:wrap;gap:6px;font-size:.82em;color:#555"><span>💰 <b>996€</b></span><span>📐 112m²</span><span>🚪 4 pièces</span><span>📍 Montbrison</span><span>⚡ DPE <span style="background:#a6d96a;color:#fff;padding:2px 8px;border-radius:4px;font-weight:700;font-size:.85em">C</span></span></div>
+<div style="font-size:.78em;color:#888">Bien'ici · 22/05/2026 08:47</div>
+<div style="font-size:.82em;color:#444;margin-top:2px;flex:1">MONTBRISON MAISON A LOUER - Montbrison, maison récente de 112.3m², située chemin des Grands Garets, offrant une cuisine équipée avec plaque de cuisson et hotte, un séjour avec mezzanine, trois chambres dont deux avec pla…</div>
+<a href="https://www.bienici.com/annonce/ag420225-531134906" target="_blank" style="margin-top:8px;display:inline-block;background:#2563eb;color:#fff;text-decoration:none;padding:7px 14px;border-radius:6px;font-size:.85em;font-weight:600;text-align:center">Voir l'annonce →</a>
+</div></div><div class="card invalid" style="position:relative;background:#fff;border-radius:10px;box-shadow:0 2px 12px rgba(0,0,0,.09);overflow:hidden;display:flex;flex-direction:column">
+<div style="position:absolute;top:0;left:0;right:0;background:rgba(0,0,0,.55);color:#fff;font-size:.75em;padding:3px 8px;border-radius:8px 8px 0 0">⚠️ Hors critères</div><img src="https://file.bienici.com/photo/iad-france-925891_images.playiad.com_property_broadcast_2026_05_22_019e4c910187e4dcba27b2e566be039d.jpg" style="width:100%;height:150px;object-fit:cover;border-radius:8px 8px 0 0;display:block" onerror="this.style.display='none'"><div style="padding:14px;flex:1;display:flex;flex-direction:column;gap:6px">
+<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px"><span style="font-weight:700;font-size:.95em;color:#1a2340;line-height:1.3">Location Appartement 4 pièces</span><span style="min-width:38px;text-align:center;background:#e74c3c;color:#fff;border-radius:20px;padding:2px 9px;font-weight:700;font-size:.85em">4/10</span></div>
+<div style="display:flex;flex-wrap:wrap;gap:6px;font-size:.82em;color:#555"><span>💰 <b>1150€</b></span><span>📐 89m²</span><span>🚪 4 pièces</span><span>📍 Lambersart</span><span>⚡ DPE <span style="background:#fdae61;color:#333;padding:2px 8px;border-radius:4px;font-weight:700;font-size:.85em">E</span></span></div>
+<div style="font-size:.78em;color:#888">Bien'ici · 22/05/2026 08:47</div>
+<div style="font-size:.82em;color:#444;margin-top:2px;flex:1">iad France - Sandra Del Magno vous propose: Appartement T4 Lumineux avec Garage à Lambersart en plein cOEur du canon d’or, 263 RUE DE LILLE. <br>Découvrez ce charmant appartement situé au cOEur de Lambersart, à proximité…</div>
+<a href="https://www.bienici.com/annonce/iad-france-925891" target="_blank" style="margin-top:8px;display:inline-block;background:#2563eb;color:#fff;text-decoration:none;padding:7px 14px;border-radius:6px;font-size:.85em;font-weight:600;text-align:center">Voir l'annonce →</a>
+</div></div><div class="card invalid" style="position:relative;background:#fff;border-radius:10px;box-shadow:0 2px 12px rgba(0,0,0,.09);overflow:hidden;display:flex;flex-direction:column">
+<div style="position:absolute;top:0;left:0;right:0;background:rgba(0,0,0,.55);color:#fff;font-size:.75em;padding:3px 8px;border-radius:8px 8px 0 0">⚠️ Hors critères</div><img src="https://file.bienici.com/photo/ag711048-531149867_photos.ubiflow.net_711048_531149867_photos_1.jpg_INSOON_EB_5512801818_20260522052443" style="width:100%;height:150px;object-fit:cover;border-radius:8px 8px 0 0;display:block" onerror="this.style.display='none'"><div style="padding:14px;flex:1;display:flex;flex-direction:column;gap:6px">
+<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px"><span style="font-weight:700;font-size:.95em;color:#1a2340;line-height:1.3">T5 au 2ème étage avec balcon - centre-ville</span><span style="min-width:38px;text-align:center;background:#27ae60;color:#fff;border-radius:20px;padding:2px 9px;font-weight:700;font-size:.85em">9/10</span></div>
+<div style="display:flex;flex-wrap:wrap;gap:6px;font-size:.82em;color:#555"><span>💰 <b>890€</b></span><span>📐 120m²</span><span>🚪 5 pièces</span><span>📍 Chalon-sur-Saône</span><span>⚡ DPE <span style="background:#d7191c;color:#fff;padding:2px 8px;border-radius:4px;font-weight:700;font-size:.85em">F</span></span></div>
+<div style="font-size:.78em;color:#888">Bien'ici · 22/05/2026 08:47</div>
+<div style="font-size:.82em;color:#444;margin-top:2px;flex:1">Situé au 12 rue Emiland Gauthey, découvrez ce bel appartement d'environ 120 m², au 2? étage d'une copropriété de standing au charme bourgeois.
 
-Il se compose d'une grande cuisine pouvant être aménagée…</div>
-            <a href="https://www.bienici.com/annonce/ag711048-531149867" target="_blank" style="margin-top:8px;display:inline-block;background:#2563eb;color:#fff;text-decoration:none;padding:7px 14px;border-radius:6px;font-size:0.85em;font-weight:600;text-align:center">Voir l'annonce →</a>
-          </div>
-        </div>
-        <div class="card invalid" style="position:relative;background:#fff;border-radius:10px;box-shadow:0 2px 12px rgba(0,0,0,0.09);overflow:hidden;display:flex;flex-direction:column">
-          <div style="position:absolute;top:0;left:0;right:0;background:rgba(0,0,0,0.55);color:#fff;font-size:0.75em;padding:3px 8px;border-radius:8px 8px 0 0">⚠️ Hors critères</div><img src="https://file.bienici.com/photo/hektor-GOURNAY23-3704_cabinet-jc-lebourg.staticlbi.com_original_images_biens_1_9bf1292f7a25e2a90bcac6b7513dc3a2_720d3592fe2fa0d215dcb81898e41987.jpg" style="width:100%;height:150px;object-fit:cover;border-radius:8px 8px 0 0;display:block" onerror="this.style.display='none'">
-          <div style="padding:14px;flex:1;display:flex;flex-direction:column;gap:6px">
-            <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px">
-              <span style="font-weight:700;font-size:0.95em;color:#1a2340;line-height:1.3">MAISON F4</span>
-              <span style="min-width:38px;text-align:center;background:#27ae60;color:#fff;border-radius:20px;padding:2px 9px;font-weight:700;font-size:0.85em">8/10</span>
-            </div>
-            <div style="display:flex;flex-wrap:wrap;gap:6px;font-size:0.82em;color:#555">
-              <span>💰 <b>1019€</b></span>
-              <span>📐 93.38m²</span>
-              <span>🚪 4 pièces</span>
-              <span>📍 Gisors</span>
-              <span>⚡ DPE <span style="background:#a6d96a;color:#fff;padding:2px 8px;border-radius:4px;font-weight:700;font-size:0.85em">C</span></span>
-            </div>
-            <div style="font-size:0.78em;color:#888">Bien'ici · 22/05/2026 08:47</div>
-            <div style="font-size:0.82em;color:#444;margin-top:2px;flex:1">MAISON D 'HABITATION Centre ville, RDC : entrée, séjour-salon avec cuisine ouverte, salle d'eau avec wc, 1er étage : 3 chambres, wc 2eme étage : grande pièce. chauff. électrique terrain (pelouse), ter…</div>
-            <a href="https://www.bienici.com/annonce/hektor-GOURNAY23-3704" target="_blank" style="margin-top:8px;display:inline-block;background:#2563eb;color:#fff;text-decoration:none;padding:7px 14px;border-radius:6px;font-size:0.85em;font-weight:600;text-align:center">Voir l'annonce →</a>
-          </div>
-        </div>
-        <div class="card invalid" style="position:relative;background:#fff;border-radius:10px;box-shadow:0 2px 12px rgba(0,0,0,0.09);overflow:hidden;display:flex;flex-direction:column">
-          <div style="position:absolute;top:0;left:0;right:0;background:rgba(0,0,0,0.55);color:#fff;font-size:0.75em;padding:3px 8px;border-radius:8px 8px 0 0">⚠️ Hors critères</div><img src="https://file.bienici.com/photo/nestenn-1-99939560700_media.immo-facile.com_office15_avis_immobilier_fontenay_catalog_images_pr_p_3_9_5_6_0_7_0_0_39560700a.jpg_DATEMAJ_22_05_2026-09_14_09" style="width:100%;height:150px;object-fit:cover;border-radius:8px 8px 0 0;display:block" onerror="this.style.display='none'">
-          <div style="padding:14px;flex:1;display:flex;flex-direction:column;gap:6px">
-            <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px">
-              <span style="font-weight:700;font-size:0.95em;color:#1a2340;line-height:1.3">A LOUER - Maison de plain-pied sur Fontenay-le-Comte</span>
-              <span style="min-width:38px;text-align:center;background:#27ae60;color:#fff;border-radius:20px;padding:2px 9px;font-weight:700;font-size:0.85em">8/10</span>
-            </div>
-            <div style="display:flex;flex-wrap:wrap;gap:6px;font-size:0.82em;color:#555">
-              <span>💰 <b>800€</b></span>
-              <span>📐 83.45m²</span>
-              <span>🚪 4 pièces</span>
-              <span>📍 Fontenay-le-Comte</span>
-              <span>⚡ DPE <span style="background:#ffffbf;color:#333;padding:2px 8px;border-radius:4px;font-weight:700;font-size:0.85em">D</span></span>
-            </div>
-            <div style="font-size:0.78em;color:#888">Bien'ici · 22/05/2026 08:47</div>
-            <div style="font-size:0.82em;color:#444;margin-top:2px;flex:1">Découvrez cette agréable maison de plain-pied comprenant une entrée, une pièce de vie lumineuse avec son poêle à granulés, une cuisine équipée aménagée, un dégagement avec placards desservant trois ch…</div>
-            <a href="https://www.bienici.com/annonce/nestenn-1-99939560700" target="_blank" style="margin-top:8px;display:inline-block;background:#2563eb;color:#fff;text-decoration:none;padding:7px 14px;border-radius:6px;font-size:0.85em;font-weight:600;text-align:center">Voir l'annonce →</a>
-          </div>
-        </div>
-        <div class="card invalid" style="position:relative;background:#fff;border-radius:10px;box-shadow:0 2px 12px rgba(0,0,0,0.09);overflow:hidden;display:flex;flex-direction:column">
-          <div style="position:absolute;top:0;left:0;right:0;background:rgba(0,0,0,0.55);color:#fff;font-size:0.75em;padding:3px 8px;border-radius:8px 8px 0 0">⚠️ Hors critères</div><img src="https://file.bienici.com/photo/guy-hoquet-18-GT0037-960_d2m2j20yzublln.cloudfront.net_6_280571_d16594f5-a443-4c1b-9ffc-2167e483244e.jpg" style="width:100%;height:150px;object-fit:cover;border-radius:8px 8px 0 0;display:block" onerror="this.style.display='none'">
-          <div style="padding:14px;flex:1;display:flex;flex-direction:column;gap:6px">
-            <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px">
-              <span style="font-weight:700;font-size:0.95em;color:#1a2340;line-height:1.3">Maison</span>
-              <span style="min-width:38px;text-align:center;background:#f39c12;color:#fff;border-radius:20px;padding:2px 9px;font-weight:700;font-size:0.85em">7/10</span>
-            </div>
-            <div style="display:flex;flex-wrap:wrap;gap:6px;font-size:0.82em;color:#555">
-              <span>💰 <b>1100€</b></span>
-              <span>📐 99.7m²</span>
-              <span>🚪 5 pièces</span>
-              <span>📍 Saint-Jean-de-Braye</span>
-              <span>⚡ DPE <span style="background:#ffffbf;color:#333;padding:2px 8px;border-radius:4px;font-weight:700;font-size:0.85em">D</span></span>
-            </div>
-            <div style="font-size:0.78em;color:#888">Bien'ici · 22/05/2026 08:47</div>
-            <div style="font-size:0.82em;color:#444;margin-top:2px;flex:1">À louer à Saint-Jean-de-Braye, cette maison spacieuse d'environ 100 m² est idéale pour les familles. Elle offre 3 chambres et un bureau, parfaites pour chacun de vos besoins. Située dans un quartier p…</div>
-            <a href="https://www.bienici.com/annonce/guy-hoquet-18-GT0037-960" target="_blank" style="margin-top:8px;display:inline-block;background:#2563eb;color:#fff;text-decoration:none;padding:7px 14px;border-radius:6px;font-size:0.85em;font-weight:600;text-align:center">Voir l'annonce →</a>
-          </div>
-        </div>
-        <div class="card invalid" style="position:relative;background:#fff;border-radius:10px;box-shadow:0 2px 12px rgba(0,0,0,0.09);overflow:hidden;display:flex;flex-direction:column">
-          <div style="position:absolute;top:0;left:0;right:0;background:rgba(0,0,0,0.55);color:#fff;font-size:0.75em;padding:3px 8px;border-radius:8px 8px 0 0">⚠️ Hors critères</div><img src="https://file.bienici.com/photo/ladresse-1-adresse-10265482_media.immo-facile.com_office7_ladresseAc3-521_catalog_images_pr_p_1_0_2_6_5_4_8_2_10265482a.jpg_DATEMAJ_20_05_2026-14_23_56" style="width:100%;height:150px;object-fit:cover;border-radius:8px 8px 0 0;display:block" onerror="this.style.display='none'">
-          <div style="padding:14px;flex:1;display:flex;flex-direction:column;gap:6px">
-            <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px">
-              <span style="font-weight:700;font-size:0.95em;color:#1a2340;line-height:1.3">Maison La Crau 4 pièce(s) 85 m2</span>
-              <span style="min-width:38px;text-align:center;background:#e74c3c;color:#fff;border-radius:20px;padding:2px 9px;font-weight:700;font-size:0.85em">5/10</span>
-            </div>
-            <div style="display:flex;flex-wrap:wrap;gap:6px;font-size:0.82em;color:#555">
-              <span>💰 <b>1120€</b></span>
-              <span>📐 85m²</span>
-              <span>🚪 4 pièces</span>
-              <span>📍 La Crau</span>
-              <span>⚡ DPE <span style="background:#a6d96a;color:#fff;padding:2px 8px;border-radius:4px;font-weight:700;font-size:0.85em">C</span></span>
-            </div>
-            <div style="font-size:0.78em;color:#888">Bien'ici · 22/05/2026 08:47</div>
-            <div style="font-size:0.82em;color:#444;margin-top:2px;flex:1">A louer à La Crau, centre ville, maison T4 de 85 m², mitoyenne des 2 côtés,  comprenant au rdc 1 entrée, 1 salon-séjour, 1 wc, 1 cour, au 1er étage, 3 chambres dont 1 avec balcon, 1 salle de bain et 1…</div>
-            <a href="https://www.bienici.com/annonce/ladresse-1-adresse-10265482" target="_blank" style="margin-top:8px;display:inline-block;background:#2563eb;color:#fff;text-decoration:none;padding:7px 14px;border-radius:6px;font-size:0.85em;font-weight:600;text-align:center">Voir l'annonce →</a>
-          </div>
-        </div>
-        <div class="card invalid" style="position:relative;background:#fff;border-radius:10px;box-shadow:0 2px 12px rgba(0,0,0,0.09);overflow:hidden;display:flex;flex-direction:column">
-          <div style="position:absolute;top:0;left:0;right:0;background:rgba(0,0,0,0.55);color:#fff;font-size:0.75em;padding:3px 8px;border-radius:8px 8px 0 0">⚠️ Hors critères</div><img src="https://file.bienici.com/photo/apimo-87036018_media.apimo.pro_cache_3eb29f2f4115998e51a3a9da4f3e0c28_2a4abf391d_1920-original.jpg" style="width:100%;height:150px;object-fit:cover;border-radius:8px 8px 0 0;display:block" onerror="this.style.display='none'">
-          <div style="padding:14px;flex:1;display:flex;flex-direction:column;gap:6px">
-            <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px">
-              <span style="font-weight:700;font-size:0.95em;color:#1a2340;line-height:1.3">A LOUER - MAISON 5 PIECES située à FONTAINE LA GUYON</span>
-              <span style="min-width:38px;text-align:center;background:#f39c12;color:#fff;border-radius:20px;padding:2px 9px;font-weight:700;font-size:0.85em">6/10</span>
-            </div>
-            <div style="display:flex;flex-wrap:wrap;gap:6px;font-size:0.82em;color:#555">
-              <span>💰 <b>1225€</b></span>
-              <span>📐 137.4m²</span>
-              <span>🚪 5 pièces</span>
-              <span>📍 Fontaine-la-Guyon</span>
-              <span>⚡ DPE <span style="background:#a6d96a;color:#fff;padding:2px 8px;border-radius:4px;font-weight:700;font-size:0.85em">C</span></span>
-            </div>
-            <div style="font-size:0.78em;color:#888">Bien'ici · 22/05/2026 08:47</div>
-            <div style="font-size:0.82em;color:#444;margin-top:2px;flex:1">Votre agence <span class="importDescriptionDecorator" data-url="ARTHURIMMO.COM" data-type="basicUrl">ARTHURIMMO.COM</span> CHARTRES vous propose en exclusivité, à la location cette charmante maison si…</div>
-            <a href="https://www.bienici.com/annonce/apimo-87036018" target="_blank" style="margin-top:8px;display:inline-block;background:#2563eb;color:#fff;text-decoration:none;padding:7px 14px;border-radius:6px;font-size:0.85em;font-weight:600;text-align:center">Voir l'annonce →</a>
-          </div>
-        </div>
-        <div class="card invalid" style="position:relative;background:#fff;border-radius:10px;box-shadow:0 2px 12px rgba(0,0,0,0.09);overflow:hidden;display:flex;flex-direction:column">
-          <div style="position:absolute;top:0;left:0;right:0;background:rgba(0,0,0,0.55);color:#fff;font-size:0.75em;padding:3px 8px;border-radius:8px 8px 0 0">⚠️ Hors critères</div><img src="https://file.bienici.com/photo/laforet-immo-facile-52706415_media.immo-facile.com_office9_laforet_bourgoinjallieu_catalog_images_pr_p_5_2_7_0_6_4_1_5_52706415a.jpg_DATEMAJ_22_05_2026-09_24_42" style="width:100%;height:150px;object-fit:cover;border-radius:8px 8px 0 0;display:block" onerror="this.style.display='none'">
-          <div style="padding:14px;flex:1;display:flex;flex-direction:column;gap:6px">
-            <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px">
-              <span style="font-weight:700;font-size:0.95em;color:#1a2340;line-height:1.3">Maison L Isle D Abeau 5 pièce(s) 98.38 m2</span>
-              <span style="min-width:38px;text-align:center;background:#f39c12;color:#fff;border-radius:20px;padding:2px 9px;font-weight:700;font-size:0.85em">7/10</span>
-            </div>
-            <div style="display:flex;flex-wrap:wrap;gap:6px;font-size:0.82em;color:#555">
-              <span>💰 <b>1300€</b></span>
-              <span>📐 98.38m²</span>
-              <span>🚪 5 pièces</span>
-              <span>📍 L'Isle-d'Abeau</span>
-              <span>⚡ DPE <span style="background:#52b241;color:#fff;padding:2px 8px;border-radius:4px;font-weight:700;font-size:0.85em">B</span></span>
-            </div>
-            <div style="font-size:0.78em;color:#888">Bien'ici · 22/05/2026 08:47</div>
-            <div style="font-size:0.82em;color:#444;margin-top:2px;flex:1">Maison de 98 m² située à L'Isle-d'Abeau, dans un environnement calme et agréable, idéale pour une famille.<br>Cette maison de 5 pièces se compose d'une belle pièce de vie lumineuse, d'une cuisine fonc…</div>
-            <a href="https://www.bienici.com/annonce/laforet-immo-facile-52706415" target="_blank" style="margin-top:8px;display:inline-block;background:#2563eb;color:#fff;text-decoration:none;padding:7px 14px;border-radius:6px;font-size:0.85em;font-weight:600;text-align:center">Voir l'annonce →</a>
-          </div>
-        </div>
-        <div class="card invalid" style="position:relative;background:#fff;border-radius:10px;box-shadow:0 2px 12px rgba(0,0,0,0.09);overflow:hidden;display:flex;flex-direction:column">
-          <div style="position:absolute;top:0;left:0;right:0;background:rgba(0,0,0,0.55);color:#fff;font-size:0.75em;padding:3px 8px;border-radius:8px 8px 0 0">⚠️ Hors critères</div><img src="https://file.bienici.com/photo/laforet-immo-facile-52703317_media.immo-facile.com_office6_laforet_caen_catalog_images_pr_p_5_2_7_0_3_3_1_7_52703317a.jpg_DATEMAJ_21_05_2026-14_51_28" style="width:100%;height:150px;object-fit:cover;border-radius:8px 8px 0 0;display:block" onerror="this.style.display='none'">
-          <div style="padding:14px;flex:1;display:flex;flex-direction:column;gap:6px">
-            <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px">
-              <span style="font-weight:700;font-size:0.95em;color:#1a2340;line-height:1.3">Appartement Herouville Saint Clair 4 pièces 64.88 m2</span>
-              <span style="min-width:38px;text-align:center;background:#f39c12;color:#fff;border-radius:20px;padding:2px 9px;font-weight:700;font-size:0.85em">7/10</span>
-            </div>
-            <div style="display:flex;flex-wrap:wrap;gap:6px;font-size:0.82em;color:#555">
-              <span>💰 <b>1150€</b></span>
-              <span>📐 64.88m²</span>
-              <span>🚪 4 pièces</span>
-              <span>📍 Hérouville-Saint-Clair</span>
-              <span>⚡ DPE <span style="background:#a6d96a;color:#fff;padding:2px 8px;border-radius:4px;font-weight:700;font-size:0.85em">C</span></span>
-            </div>
-            <div style="font-size:0.78em;color:#888">Bien'ici · 22/05/2026 08:47</div>
-            <div style="font-size:0.82em;color:#444;margin-top:2px;flex:1">Un appartement meublé de 3 chambres. Logement entièrement refait à neuf proposant une prestation de qualité. <br>Cuisine aménagée et équipée ouverte sur séjour / salon.<br>Salle d'eau avec double vasq…</div>
-            <a href="https://www.bienici.com/annonce/laforet-immo-facile-52703317" target="_blank" style="margin-top:8px;display:inline-block;background:#2563eb;color:#fff;text-decoration:none;padding:7px 14px;border-radius:6px;font-size:0.85em;font-weight:600;text-align:center">Voir l'annonce →</a>
-          </div>
-        </div>
-        <div class="card invalid" style="position:relative;background:#fff;border-radius:10px;box-shadow:0 2px 12px rgba(0,0,0,0.09);overflow:hidden;display:flex;flex-direction:column">
-          <div style="position:absolute;top:0;left:0;right:0;background:rgba(0,0,0,0.55);color:#fff;font-size:0.75em;padding:3px 8px;border-radius:8px 8px 0 0">⚠️ Hors critères</div><img src="https://file.bienici.com/photo/ag681141-531175076_photos.ubiflow.net_681141_531175076_photos_1.jpg_INSOON_EB_5512801818_20260522095455" style="width:100%;height:150px;object-fit:cover;border-radius:8px 8px 0 0;display:block" onerror="this.style.display='none'">
-          <div style="padding:14px;flex:1;display:flex;flex-direction:column;gap:6px">
-            <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px">
-              <span style="font-weight:700;font-size:0.95em;color:#1a2340;line-height:1.3">APPARTEMENT</span>
-              <span style="min-width:38px;text-align:center;background:#f39c12;color:#fff;border-radius:20px;padding:2px 9px;font-weight:700;font-size:0.85em">7/10</span>
-            </div>
-            <div style="display:flex;flex-wrap:wrap;gap:6px;font-size:0.82em;color:#555">
-              <span>💰 <b>1170€</b></span>
-              <span>📐 111m²</span>
-              <span>🚪 4 pièces</span>
-              <span>📍 Colmar</span>
-              <span>⚡ DPE <span style="background:#ccc;color:#fff;padding:2px 8px;border-radius:4px;font-weight:700;font-size:0.85em">?</span></span>
-            </div>
-            <div style="font-size:0.78em;color:#888">Bien'ici · 22/05/2026 08:47</div>
-            <div style="font-size:0.82em;color:#444;margin-top:2px;flex:1">Ce charmant appartement d'environ 111 m², situé dans un environnement calme, se compose d'une entrée, d'un spacieux séjour, de deux chambres, d'une cuisine équipée ainsi que d'une salle de bain avec d…</div>
-            <a href="https://www.bienici.com/annonce/ag681141-531175076" target="_blank" style="margin-top:8px;display:inline-block;background:#2563eb;color:#fff;text-decoration:none;padding:7px 14px;border-radius:6px;font-size:0.85em;font-weight:600;text-align:center">Voir l'annonce →</a>
-          </div>
-        </div>
-        <div class="card invalid" style="position:relative;background:#fff;border-radius:10px;box-shadow:0 2px 12px rgba(0,0,0,0.09);overflow:hidden;display:flex;flex-direction:column">
-          <div style="position:absolute;top:0;left:0;right:0;background:rgba(0,0,0,0.55);color:#fff;font-size:0.75em;padding:3px 8px;border-radius:8px 8px 0 0">⚠️ Hors critères</div><img src="https://file.bienici.com/photo/ag681141-531175070_photos.ubiflow.net_681141_531175070_photos_1.jpg_INSOON_EB_5512801818_20260522095454" style="width:100%;height:150px;object-fit:cover;border-radius:8px 8px 0 0;display:block" onerror="this.style.display='none'">
-          <div style="padding:14px;flex:1;display:flex;flex-direction:column;gap:6px">
-            <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px">
-              <span style="font-weight:700;font-size:0.95em;color:#1a2340;line-height:1.3">APPARTEMENT</span>
-              <span style="min-width:38px;text-align:center;background:#f39c12;color:#fff;border-radius:20px;padding:2px 9px;font-weight:700;font-size:0.85em">6/10</span>
-            </div>
-            <div style="display:flex;flex-wrap:wrap;gap:6px;font-size:0.82em;color:#555">
-              <span>💰 <b>1050€</b></span>
-              <span>📐 109m²</span>
-              <span>🚪 4 pièces</span>
-              <span>📍 Colmar</span>
-              <span>⚡ DPE <span style="background:#ffffbf;color:#333;padding:2px 8px;border-radius:4px;font-weight:700;font-size:0.85em">D</span></span>
-            </div>
-            <div style="font-size:0.78em;color:#888">Bien'ici · 22/05/2026 08:47</div>
-            <div style="font-size:0.82em;color:#444;margin-top:2px;flex:1">Au 2&#7497 étage, découvrez ce bel appartement de type F4 d'environ 109 m².
-Il se compose de deux chambres, d'une cuisine équipée, d'une salle de bains ainsi que d'un WC séparé. Vous profiterez égalem…</div>
-            <a href="https://www.bienici.com/annonce/ag681141-531175070" target="_blank" style="margin-top:8px;display:inline-block;background:#2563eb;color:#fff;text-decoration:none;padding:7px 14px;border-radius:6px;font-size:0.85em;font-weight:600;text-align:center">Voir l'annonce →</a>
-          </div>
-        </div></div>
-<script>
-function filtrer(mode,btn){
-  document.querySelectorAll('.filters button').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
-  document.querySelectorAll('.card').forEach(c=>{
-    const inv=c.classList.contains('invalid');
-    const score=parseInt(c.querySelector('[style*="border-radius:20px"]')?.textContent)||0;
-    if(mode==='tous') c.style.display='';
-    else if(mode==='valides') c.style.display=inv?'none':'';
-    else if(mode==='top') c.style.display=score>=7?'':'none';
-  });
-}
-</script>
+Il se compose d'une grande cuisine pouvant être aménagée selon vos envies, d…</div>
+<a href="https://www.bienici.com/annonce/ag711048-531149867" target="_blank" style="margin-top:8px;display:inline-block;background:#2563eb;color:#fff;text-decoration:none;padding:7px 14px;border-radius:6px;font-size:.85em;font-weight:600;text-align:center">Voir l'annonce →</a>
+</div></div><div class="card invalid" style="position:relative;background:#fff;border-radius:10px;box-shadow:0 2px 12px rgba(0,0,0,.09);overflow:hidden;display:flex;flex-direction:column">
+<div style="position:absolute;top:0;left:0;right:0;background:rgba(0,0,0,.55);color:#fff;font-size:.75em;padding:3px 8px;border-radius:8px 8px 0 0">⚠️ Hors critères</div><img src="https://file.bienici.com/photo/hektor-GOURNAY23-3704_cabinet-jc-lebourg.staticlbi.com_original_images_biens_1_9bf1292f7a25e2a90bcac6b7513dc3a2_720d3592fe2fa0d215dcb81898e41987.jpg" style="width:100%;height:150px;object-fit:cover;border-radius:8px 8px 0 0;display:block" onerror="this.style.display='none'"><div style="padding:14px;flex:1;display:flex;flex-direction:column;gap:6px">
+<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px"><span style="font-weight:700;font-size:.95em;color:#1a2340;line-height:1.3">MAISON F4</span><span style="min-width:38px;text-align:center;background:#27ae60;color:#fff;border-radius:20px;padding:2px 9px;font-weight:700;font-size:.85em">8/10</span></div>
+<div style="display:flex;flex-wrap:wrap;gap:6px;font-size:.82em;color:#555"><span>💰 <b>1019€</b></span><span>📐 93.38m²</span><span>🚪 4 pièces</span><span>📍 Gisors</span><span>⚡ DPE <span style="background:#a6d96a;color:#fff;padding:2px 8px;border-radius:4px;font-weight:700;font-size:.85em">C</span></span></div>
+<div style="font-size:.78em;color:#888">Bien'ici · 22/05/2026 08:47</div>
+<div style="font-size:.82em;color:#444;margin-top:2px;flex:1">MAISON D 'HABITATION Centre ville, RDC : entrée, séjour-salon avec cuisine ouverte, salle d'eau avec wc, 1er étage : 3 chambres, wc 2eme étage : grande pièce. chauff. électrique terrain (pelouse), terrasse. LOYER : 1019 …</div>
+<a href="https://www.bienici.com/annonce/hektor-GOURNAY23-3704" target="_blank" style="margin-top:8px;display:inline-block;background:#2563eb;color:#fff;text-decoration:none;padding:7px 14px;border-radius:6px;font-size:.85em;font-weight:600;text-align:center">Voir l'annonce →</a>
+</div></div><div class="card invalid" style="position:relative;background:#fff;border-radius:10px;box-shadow:0 2px 12px rgba(0,0,0,.09);overflow:hidden;display:flex;flex-direction:column">
+<div style="position:absolute;top:0;left:0;right:0;background:rgba(0,0,0,.55);color:#fff;font-size:.75em;padding:3px 8px;border-radius:8px 8px 0 0">⚠️ Hors critères</div><img src="https://file.bienici.com/photo/nestenn-1-99939560700_media.immo-facile.com_office15_avis_immobilier_fontenay_catalog_images_pr_p_3_9_5_6_0_7_0_0_39560700a.jpg_DATEMAJ_22_05_2026-09_14_09" style="width:100%;height:150px;object-fit:cover;border-radius:8px 8px 0 0;display:block" onerror="this.style.display='none'"><div style="padding:14px;flex:1;display:flex;flex-direction:column;gap:6px">
+<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px"><span style="font-weight:700;font-size:.95em;color:#1a2340;line-height:1.3">A LOUER - Maison de plain-pied sur Fontenay-le-Comte</span><span style="min-width:38px;text-align:center;background:#27ae60;color:#fff;border-radius:20px;padding:2px 9px;font-weight:700;font-size:.85em">8/10</span></div>
+<div style="display:flex;flex-wrap:wrap;gap:6px;font-size:.82em;color:#555"><span>💰 <b>800€</b></span><span>📐 83.45m²</span><span>🚪 4 pièces</span><span>📍 Fontenay-le-Comte</span><span>⚡ DPE <span style="background:#ffffbf;color:#333;padding:2px 8px;border-radius:4px;font-weight:700;font-size:.85em">D</span></span></div>
+<div style="font-size:.78em;color:#888">Bien'ici · 22/05/2026 08:47</div>
+<div style="font-size:.82em;color:#444;margin-top:2px;flex:1">Découvrez cette agréable maison de plain-pied comprenant une entrée, une pièce de vie lumineuse avec son poêle à granulés, une cuisine équipée aménagée, un dégagement avec placards desservant trois chambres dont une avec…</div>
+<a href="https://www.bienici.com/annonce/nestenn-1-99939560700" target="_blank" style="margin-top:8px;display:inline-block;background:#2563eb;color:#fff;text-decoration:none;padding:7px 14px;border-radius:6px;font-size:.85em;font-weight:600;text-align:center">Voir l'annonce →</a>
+</div></div><div class="card invalid" style="position:relative;background:#fff;border-radius:10px;box-shadow:0 2px 12px rgba(0,0,0,.09);overflow:hidden;display:flex;flex-direction:column">
+<div style="position:absolute;top:0;left:0;right:0;background:rgba(0,0,0,.55);color:#fff;font-size:.75em;padding:3px 8px;border-radius:8px 8px 0 0">⚠️ Hors critères</div><img src="https://file.bienici.com/photo/guy-hoquet-18-GT0037-960_d2m2j20yzublln.cloudfront.net_6_280571_d16594f5-a443-4c1b-9ffc-2167e483244e.jpg" style="width:100%;height:150px;object-fit:cover;border-radius:8px 8px 0 0;display:block" onerror="this.style.display='none'"><div style="padding:14px;flex:1;display:flex;flex-direction:column;gap:6px">
+<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px"><span style="font-weight:700;font-size:.95em;color:#1a2340;line-height:1.3">Maison</span><span style="min-width:38px;text-align:center;background:#f39c12;color:#fff;border-radius:20px;padding:2px 9px;font-weight:700;font-size:.85em">7/10</span></div>
+<div style="display:flex;flex-wrap:wrap;gap:6px;font-size:.82em;color:#555"><span>💰 <b>1100€</b></span><span>📐 99.7m²</span><span>🚪 5 pièces</span><span>📍 Saint-Jean-de-Braye</span><span>⚡ DPE <span style="background:#ffffbf;color:#333;padding:2px 8px;border-radius:4px;font-weight:700;font-size:.85em">D</span></span></div>
+<div style="font-size:.78em;color:#888">Bien'ici · 22/05/2026 08:47</div>
+<div style="font-size:.82em;color:#444;margin-top:2px;flex:1">À louer à Saint-Jean-de-Braye, cette maison spacieuse d'environ 100 m² est idéale pour les familles. Elle offre 3 chambres et un bureau, parfaites pour chacun de vos besoins. Située dans un quartier paisible, vous appréc…</div>
+<a href="https://www.bienici.com/annonce/guy-hoquet-18-GT0037-960" target="_blank" style="margin-top:8px;display:inline-block;background:#2563eb;color:#fff;text-decoration:none;padding:7px 14px;border-radius:6px;font-size:.85em;font-weight:600;text-align:center">Voir l'annonce →</a>
+</div></div><div class="card invalid" style="position:relative;background:#fff;border-radius:10px;box-shadow:0 2px 12px rgba(0,0,0,.09);overflow:hidden;display:flex;flex-direction:column">
+<div style="position:absolute;top:0;left:0;right:0;background:rgba(0,0,0,.55);color:#fff;font-size:.75em;padding:3px 8px;border-radius:8px 8px 0 0">⚠️ Hors critères</div><img src="https://file.bienici.com/photo/ladresse-1-adresse-10265482_media.immo-facile.com_office7_ladresseAc3-521_catalog_images_pr_p_1_0_2_6_5_4_8_2_10265482a.jpg_DATEMAJ_20_05_2026-14_23_56" style="width:100%;height:150px;object-fit:cover;border-radius:8px 8px 0 0;display:block" onerror="this.style.display='none'"><div style="padding:14px;flex:1;display:flex;flex-direction:column;gap:6px">
+<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px"><span style="font-weight:700;font-size:.95em;color:#1a2340;line-height:1.3">Maison La Crau 4 pièce(s) 85 m2</span><span style="min-width:38px;text-align:center;background:#e74c3c;color:#fff;border-radius:20px;padding:2px 9px;font-weight:700;font-size:.85em">5/10</span></div>
+<div style="display:flex;flex-wrap:wrap;gap:6px;font-size:.82em;color:#555"><span>💰 <b>1120€</b></span><span>📐 85m²</span><span>🚪 4 pièces</span><span>📍 La Crau</span><span>⚡ DPE <span style="background:#a6d96a;color:#fff;padding:2px 8px;border-radius:4px;font-weight:700;font-size:.85em">C</span></span></div>
+<div style="font-size:.78em;color:#888">Bien'ici · 22/05/2026 08:47</div>
+<div style="font-size:.82em;color:#444;margin-top:2px;flex:1">A louer à La Crau, centre ville, maison T4 de 85 m², mitoyenne des 2 côtés,  comprenant au rdc 1 entrée, 1 salon-séjour, 1 wc, 1 cour, au 1er étage, 3 chambres dont 1 avec balcon, 1 salle de bain et 1 wc.<br>Libre le 05/…</div>
+<a href="https://www.bienici.com/annonce/ladresse-1-adresse-10265482" target="_blank" style="margin-top:8px;display:inline-block;background:#2563eb;color:#fff;text-decoration:none;padding:7px 14px;border-radius:6px;font-size:.85em;font-weight:600;text-align:center">Voir l'annonce →</a>
+</div></div><div class="card invalid" style="position:relative;background:#fff;border-radius:10px;box-shadow:0 2px 12px rgba(0,0,0,.09);overflow:hidden;display:flex;flex-direction:column">
+<div style="position:absolute;top:0;left:0;right:0;background:rgba(0,0,0,.55);color:#fff;font-size:.75em;padding:3px 8px;border-radius:8px 8px 0 0">⚠️ Hors critères</div><img src="https://file.bienici.com/photo/apimo-87036018_media.apimo.pro_cache_3eb29f2f4115998e51a3a9da4f3e0c28_2a4abf391d_1920-original.jpg" style="width:100%;height:150px;object-fit:cover;border-radius:8px 8px 0 0;display:block" onerror="this.style.display='none'"><div style="padding:14px;flex:1;display:flex;flex-direction:column;gap:6px">
+<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px"><span style="font-weight:700;font-size:.95em;color:#1a2340;line-height:1.3">A LOUER - MAISON 5 PIECES située à FONTAINE LA GUYON</span><span style="min-width:38px;text-align:center;background:#f39c12;color:#fff;border-radius:20px;padding:2px 9px;font-weight:700;font-size:.85em">6/10</span></div>
+<div style="display:flex;flex-wrap:wrap;gap:6px;font-size:.82em;color:#555"><span>💰 <b>1225€</b></span><span>📐 137.4m²</span><span>🚪 5 pièces</span><span>📍 Fontaine-la-Guyon</span><span>⚡ DPE <span style="background:#a6d96a;color:#fff;padding:2px 8px;border-radius:4px;font-weight:700;font-size:.85em">C</span></span></div>
+<div style="font-size:.78em;color:#888">Bien'ici · 22/05/2026 08:47</div>
+<div style="font-size:.82em;color:#444;margin-top:2px;flex:1">Votre agence <span class="importDescriptionDecorator" data-url="ARTHURIMMO.COM" data-type="basicUrl">ARTHURIMMO.COM</span> CHARTRES vous propose en exclusivité, à la location cette charmante maison située dans une réside…</div>
+<a href="https://www.bienici.com/annonce/apimo-87036018" target="_blank" style="margin-top:8px;display:inline-block;background:#2563eb;color:#fff;text-decoration:none;padding:7px 14px;border-radius:6px;font-size:.85em;font-weight:600;text-align:center">Voir l'annonce →</a>
+</div></div><div class="card invalid" style="position:relative;background:#fff;border-radius:10px;box-shadow:0 2px 12px rgba(0,0,0,.09);overflow:hidden;display:flex;flex-direction:column">
+<div style="position:absolute;top:0;left:0;right:0;background:rgba(0,0,0,.55);color:#fff;font-size:.75em;padding:3px 8px;border-radius:8px 8px 0 0">⚠️ Hors critères</div><img src="https://file.bienici.com/photo/laforet-immo-facile-52706415_media.immo-facile.com_office9_laforet_bourgoinjallieu_catalog_images_pr_p_5_2_7_0_6_4_1_5_52706415a.jpg_DATEMAJ_22_05_2026-09_24_42" style="width:100%;height:150px;object-fit:cover;border-radius:8px 8px 0 0;display:block" onerror="this.style.display='none'"><div style="padding:14px;flex:1;display:flex;flex-direction:column;gap:6px">
+<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px"><span style="font-weight:700;font-size:.95em;color:#1a2340;line-height:1.3">Maison L Isle D Abeau 5 pièce(s) 98.38 m2</span><span style="min-width:38px;text-align:center;background:#f39c12;color:#fff;border-radius:20px;padding:2px 9px;font-weight:700;font-size:.85em">7/10</span></div>
+<div style="display:flex;flex-wrap:wrap;gap:6px;font-size:.82em;color:#555"><span>💰 <b>1300€</b></span><span>📐 98.38m²</span><span>🚪 5 pièces</span><span>📍 L'Isle-d'Abeau</span><span>⚡ DPE <span style="background:#52b241;color:#fff;padding:2px 8px;border-radius:4px;font-weight:700;font-size:.85em">B</span></span></div>
+<div style="font-size:.78em;color:#888">Bien'ici · 22/05/2026 08:47</div>
+<div style="font-size:.82em;color:#444;margin-top:2px;flex:1">Maison de 98 m² située à L'Isle-d'Abeau, dans un environnement calme et agréable, idéale pour une famille.<br>Cette maison de 5 pièces se compose d'une belle pièce de vie lumineuse, d'une cuisine fonctionnelle, de 3 cham…</div>
+<a href="https://www.bienici.com/annonce/laforet-immo-facile-52706415" target="_blank" style="margin-top:8px;display:inline-block;background:#2563eb;color:#fff;text-decoration:none;padding:7px 14px;border-radius:6px;font-size:.85em;font-weight:600;text-align:center">Voir l'annonce →</a>
+</div></div><div class="card invalid" style="position:relative;background:#fff;border-radius:10px;box-shadow:0 2px 12px rgba(0,0,0,.09);overflow:hidden;display:flex;flex-direction:column">
+<div style="position:absolute;top:0;left:0;right:0;background:rgba(0,0,0,.55);color:#fff;font-size:.75em;padding:3px 8px;border-radius:8px 8px 0 0">⚠️ Hors critères</div><img src="https://file.bienici.com/photo/laforet-immo-facile-52703317_media.immo-facile.com_office6_laforet_caen_catalog_images_pr_p_5_2_7_0_3_3_1_7_52703317a.jpg_DATEMAJ_21_05_2026-14_51_28" style="width:100%;height:150px;object-fit:cover;border-radius:8px 8px 0 0;display:block" onerror="this.style.display='none'"><div style="padding:14px;flex:1;display:flex;flex-direction:column;gap:6px">
+<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px"><span style="font-weight:700;font-size:.95em;color:#1a2340;line-height:1.3">Appartement Herouville Saint Clair 4 pièces 64.88 m2</span><span style="min-width:38px;text-align:center;background:#f39c12;color:#fff;border-radius:20px;padding:2px 9px;font-weight:700;font-size:.85em">7/10</span></div>
+<div style="display:flex;flex-wrap:wrap;gap:6px;font-size:.82em;color:#555"><span>💰 <b>1150€</b></span><span>📐 64.88m²</span><span>🚪 4 pièces</span><span>📍 Hérouville-Saint-Clair</span><span>⚡ DPE <span style="background:#a6d96a;color:#fff;padding:2px 8px;border-radius:4px;font-weight:700;font-size:.85em">C</span></span></div>
+<div style="font-size:.78em;color:#888">Bien'ici · 22/05/2026 08:47</div>
+<div style="font-size:.82em;color:#444;margin-top:2px;flex:1">Un appartement meublé de 3 chambres. Logement entièrement refait à neuf proposant une prestation de qualité. <br>Cuisine aménagée et équipée ouverte sur séjour / salon.<br>Salle d'eau avec double vasques, WC séparés. Nom…</div>
+<a href="https://www.bienici.com/annonce/laforet-immo-facile-52703317" target="_blank" style="margin-top:8px;display:inline-block;background:#2563eb;color:#fff;text-decoration:none;padding:7px 14px;border-radius:6px;font-size:.85em;font-weight:600;text-align:center">Voir l'annonce →</a>
+</div></div><div class="card invalid" style="position:relative;background:#fff;border-radius:10px;box-shadow:0 2px 12px rgba(0,0,0,.09);overflow:hidden;display:flex;flex-direction:column">
+<div style="position:absolute;top:0;left:0;right:0;background:rgba(0,0,0,.55);color:#fff;font-size:.75em;padding:3px 8px;border-radius:8px 8px 0 0">⚠️ Hors critères</div><img src="https://file.bienici.com/photo/ag681141-531175076_photos.ubiflow.net_681141_531175076_photos_1.jpg_INSOON_EB_5512801818_20260522095455" style="width:100%;height:150px;object-fit:cover;border-radius:8px 8px 0 0;display:block" onerror="this.style.display='none'"><div style="padding:14px;flex:1;display:flex;flex-direction:column;gap:6px">
+<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px"><span style="font-weight:700;font-size:.95em;color:#1a2340;line-height:1.3">APPARTEMENT</span><span style="min-width:38px;text-align:center;background:#f39c12;color:#fff;border-radius:20px;padding:2px 9px;font-weight:700;font-size:.85em">7/10</span></div>
+<div style="display:flex;flex-wrap:wrap;gap:6px;font-size:.82em;color:#555"><span>💰 <b>1170€</b></span><span>📐 111m²</span><span>🚪 4 pièces</span><span>📍 Colmar</span><span>⚡ DPE <span style="background:#ccc;color:#fff;padding:2px 8px;border-radius:4px;font-weight:700;font-size:.85em">?</span></span></div>
+<div style="font-size:.78em;color:#888">Bien'ici · 22/05/2026 08:47</div>
+<div style="font-size:.82em;color:#444;margin-top:2px;flex:1">Ce charmant appartement d'environ 111 m², situé dans un environnement calme, se compose d'une entrée, d'un spacieux séjour, de deux chambres, d'une cuisine équipée ainsi que d'une salle de bain avec douche et baignoire.
+…</div>
+<a href="https://www.bienici.com/annonce/ag681141-531175076" target="_blank" style="margin-top:8px;display:inline-block;background:#2563eb;color:#fff;text-decoration:none;padding:7px 14px;border-radius:6px;font-size:.85em;font-weight:600;text-align:center">Voir l'annonce →</a>
+</div></div><div class="card invalid" style="position:relative;background:#fff;border-radius:10px;box-shadow:0 2px 12px rgba(0,0,0,.09);overflow:hidden;display:flex;flex-direction:column">
+<div style="position:absolute;top:0;left:0;right:0;background:rgba(0,0,0,.55);color:#fff;font-size:.75em;padding:3px 8px;border-radius:8px 8px 0 0">⚠️ Hors critères</div><img src="https://file.bienici.com/photo/ag681141-531175070_photos.ubiflow.net_681141_531175070_photos_1.jpg_INSOON_EB_5512801818_20260522095454" style="width:100%;height:150px;object-fit:cover;border-radius:8px 8px 0 0;display:block" onerror="this.style.display='none'"><div style="padding:14px;flex:1;display:flex;flex-direction:column;gap:6px">
+<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px"><span style="font-weight:700;font-size:.95em;color:#1a2340;line-height:1.3">APPARTEMENT</span><span style="min-width:38px;text-align:center;background:#f39c12;color:#fff;border-radius:20px;padding:2px 9px;font-weight:700;font-size:.85em">6/10</span></div>
+<div style="display:flex;flex-wrap:wrap;gap:6px;font-size:.82em;color:#555"><span>💰 <b>1050€</b></span><span>📐 109m²</span><span>🚪 4 pièces</span><span>📍 Colmar</span><span>⚡ DPE <span style="background:#ffffbf;color:#333;padding:2px 8px;border-radius:4px;font-weight:700;font-size:.85em">D</span></span></div>
+<div style="font-size:.78em;color:#888">Bien'ici · 22/05/2026 08:47</div>
+<div style="font-size:.82em;color:#444;margin-top:2px;flex:1">Au 2&#7497 étage, découvrez ce bel appartement de type F4 d'environ 109 m².
+Il se compose de deux chambres, d'une cuisine équipée, d'une salle de bains ainsi que d'un WC séparé. Vous profiterez également d'un balcon, et …</div>
+<a href="https://www.bienici.com/annonce/ag681141-531175070" target="_blank" style="margin-top:8px;display:inline-block;background:#2563eb;color:#fff;text-decoration:none;padding:7px 14px;border-radius:6px;font-size:.85em;font-weight:600;text-align:center">Voir l'annonce →</a>
+</div></div></div>
+<script>function filtrer(m,b){document.querySelectorAll('.filters button').forEach(x=>x.classList.remove('active'));b.classList.add('active');document.querySelectorAll('.card').forEach(c=>{const inv=c.classList.contains('invalid');const s=parseInt(c.querySelector('[style*="border-radius:20px"]')?.textContent)||0;c.style.display=m==='tous'?'':m==='valides'?inv?'none':'':s>=7?'':'none';});}</script>
 </body></html>
